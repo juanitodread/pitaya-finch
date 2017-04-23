@@ -5,6 +5,7 @@ import com.twitter.util.Await
 
 import io.finch._
 import io.finch.circe._
+import org.juanitodread.pitayafinch.routes.EndpointsUtil
 
 object App {
   def main(args: Array[String]): Unit = {
@@ -14,6 +15,6 @@ object App {
     val api1: Endpoint[String] = get("hello1") { Ok("Hello, World!") }
     val api = api0 :+: api1
 
-    Await.ready(Http.serve(":8989", api.toService))
+    Await.ready(Http.serve(":8989", EndpointsUtil.toService))
   }
 }

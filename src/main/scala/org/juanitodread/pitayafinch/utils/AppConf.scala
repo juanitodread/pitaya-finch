@@ -8,7 +8,14 @@ trait AppConf {
   // server
   private[this] val server = config.getConfig("server")
 
-  // public spark conf
+  // api
+  private[this] val apiCfg = config.getConfig("api")
+
+  // public server conf
   val serverCtx = server.getString("context")
   val port = server.getString("port")
+
+  // public api conf
+  val api = apiCfg.getString("context")
+  val version = apiCfg.getString("version")
 }

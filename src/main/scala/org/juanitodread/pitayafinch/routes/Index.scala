@@ -6,7 +6,7 @@ import org.juanitodread.pitayafinch.utils.AppConf
 
 object Index extends AppConf {
 
-  final val basePath = serverCtx
+  final val basePath = serverCtx :: api :: version
 
   def index(): Endpoint[String] = get(basePath) {
     Ok("Hello World")

@@ -2,10 +2,6 @@ package org.juanitodread.pitayafinch.routes
 
 import io.finch._
 import com.twitter.finagle.http.Response.Ok
-import io.netty.handler.codec.http.HttpRequest
-import io.netty.handler.codec.http.HttpResponse
-import com.twitter.finagle.http.Method
-import com.twitter.finagle.http.path.Root
 import org.juanitodread.pitayafinch.utils.AppConf
 
 object User extends AppConf {

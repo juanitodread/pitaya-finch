@@ -5,6 +5,7 @@ import com.twitter.finagle.http.Response
 import com.twitter.finagle.Service
 
 import io.finch.circe._
+import io.circe.generic.auto._
 
 object EndpointsUtil {
 
@@ -12,7 +13,8 @@ object EndpointsUtil {
     (Index.index() :+:
       Index.help() :+:
       User.index() :+:
-      User.help()).toService
+      User.help() :+:
+      User.message()).toService
   }
 
 }

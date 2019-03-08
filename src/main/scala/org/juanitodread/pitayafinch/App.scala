@@ -14,7 +14,7 @@ object App extends TwitterServer with AppConf {
     info(s"Service starting at http://<domain>:${port}/${serverCtx}")
 
     val server = Http.server
-      .withLabel("my-server-label")
+      .withLabel(serviceName)
       .configured(Stats(statsReceiver))
       .serve(s":${port}", Endpoints.toService)
 

@@ -16,6 +16,7 @@ trait AppConf {
   val port = server.getString("port")
 
   // public api conf
+  val serviceName = apiCfg.getString("service")
   val api = apiCfg.getString("context")
   val version = apiCfg.getString("version")
 }

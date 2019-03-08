@@ -17,8 +17,8 @@ class EndpointsTest extends UnitSpec {
   "An Endpoints object" should "provide the Finch service definition" in {
     val service = Endpoints.toService()
 
-    endpoints.foreach { endpoint_url =>
-      service.apply(Request(endpoint_url)) shouldBe a[Promise[_]]
+    endpoints.foreach { endpointUrl =>
+      service.apply(Request(endpointUrl)) shouldBe a[Promise[_]]
     }
   }
 

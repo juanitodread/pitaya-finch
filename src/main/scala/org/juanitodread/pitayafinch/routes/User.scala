@@ -22,7 +22,6 @@ object User extends AppConf {
     val emitter = Emitter("facebook")
     val client = Client(emitter.##.toString, "John Doe", System.currentTimeMillis)
     val commonMessage = CommonMessage(client, emitter, "simple", "this is the body")
-    println(s"CommonMessage => $commonMessage")
     Ok(commonMessage)
   }
 

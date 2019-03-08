@@ -1,24 +1,26 @@
 package org.juanitodread.pitayafinch.routes
 
+import cats.effect.IO
 import io.finch._
-import com.twitter.finagle.http.Response.Ok
+import io.finch.catsEffect._
+
+import org.juanitodread.pitayafinch.model.{ Client, CommonMessage, Emitter }
 import org.juanitodread.pitayafinch.utils.AppConf
-import org.juanitodread.pitayafinch.model._
 
 object User extends AppConf {
   final val basePath = serverCtx :: api :: version :: "users"
 
-  def index(): Endpoint[String] = get(basePath) {
+  def index(): Endpoint[IO, String] = get(basePath) {
     Ok("Hello User")
   }
 
-  def help(): Endpoint[String] = get(basePath :: "help") {
+  def help(): Endpoint[IO, String] = get(basePath :: "help") {
     Ok("This is the help for users")
   }
 
-  def message(): Endpoint[CommonMessage] = get(basePath :: "cm") {
+  def message(): Endpoint[IO, CommonMessage] = get(basePath :: "cm") {
     val emitter = Emitter("facebook")
-    val client = Client(emitter.##.toString, "Jhon Doe", System.currentTimeMillis)
+    val client = Client(emitter.##.toString, "John Doe", System.currentTimeMillis)
     val commonMessage = CommonMessage(client, emitter, "simple", "this is the body")
     println(s"CommonMessage => $commonMessage")
     Ok(commonMessage)

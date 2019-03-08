@@ -1,18 +1,19 @@
 package org.juanitodread.pitayafinch.routes
 
+import cats.effect.IO
 import io.finch._
-import com.twitter.finagle.http.Response.Ok
+import io.finch.catsEffect._
+
 import org.juanitodread.pitayafinch.utils.AppConf
 
 object Index extends AppConf {
-
   final val basePath = serverCtx :: api :: version
 
-  def index(): Endpoint[String] = get(basePath) {
+  def index(): Endpoint[IO, String] = get(basePath) {
     Ok("Hello World")
   }
 
-  def help(): Endpoint[String] = get(basePath :: "help") {
+  def help(): Endpoint[IO, String] = get(basePath :: "help") {
     Ok("This is the help for root")
   }
 

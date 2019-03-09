@@ -1,7 +1,6 @@
 package org.juanitodread.pitayafinch
 
 import com.twitter.finagle.Http
-import com.twitter.finagle.param.Stats
 import com.twitter.server.TwitterServer
 import com.twitter.util.Await
 
@@ -14,8 +13,7 @@ object App extends TwitterServer with AppConf {
     info(s"Service starting at http://<domain>:${port}/${serverCtx}")
 
     val server = Http.server
-      .withLabel("my-server-label")
-      .configured(Stats(statsReceiver))
+      .withLabel(serviceName)
       .serve(s":${port}", Endpoints.toService)
 
     onExit(server.close())

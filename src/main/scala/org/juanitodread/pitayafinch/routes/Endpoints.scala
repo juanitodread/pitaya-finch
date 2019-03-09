@@ -9,8 +9,8 @@ import io.finch.circe._
 
 object Endpoints {
   def toService(): Service[Request, Response] = Bootstrap
-    .serve[Text.Plain](Index.index :+: Index.help)
-    .serve[Text.Plain](User.index :+: User.help)
-    .serve[Application.Json](User.message)
+    .serve[Text.Plain](Index.index() :+: Index.help())
+    .serve[Text.Plain](User.index() :+: User.help())
+    .serve[Application.Json](User.message())
     .toService
 }

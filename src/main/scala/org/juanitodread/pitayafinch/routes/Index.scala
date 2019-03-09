@@ -7,7 +7,7 @@ import io.finch.catsEffect._
 import org.juanitodread.pitayafinch.utils.AppConf
 
 object Index extends AppConf {
-  final val basePath = serverCtx :: api :: version
+  final private val basePath = serverCtx :: api :: version
 
   def index(): Endpoint[IO, String] = get(basePath) {
     Ok("Hello World")

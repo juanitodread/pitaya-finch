@@ -22,3 +22,5 @@ libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % logbackVersion,
   "org.scalatest" %% "scalatest" % scalatestVersion % "test"
 )
+
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oF")

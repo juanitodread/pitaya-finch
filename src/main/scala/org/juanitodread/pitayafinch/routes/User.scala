@@ -5,20 +5,20 @@ import io.finch._
 import io.finch.catsEffect._
 
 import org.juanitodread.pitayafinch.model.{ Client, CommonMessage, Emitter }
-import org.juanitodread.pitayafinch.utils.AppConf
 
-object User extends AppConf {
-  final private val basePath = serverCtx :: api :: version :: "users"
+object User extends BaseEndpoint {
 
-  def index(): Endpoint[IO, String] = get(basePath) {
+  private final val usersPath = basePath :: "users"
+
+  def index(): Endpoint[IO, String] = get(usersPath) {
     Ok("Hello User")
   }
 
-  def help(): Endpoint[IO, String] = get(basePath :: "help") {
+  def help(): Endpoint[IO, String] = get(usersPath :: "help") {
     Ok("This is the help for users")
   }
 
-  def message(): Endpoint[IO, CommonMessage] = get(basePath :: "cm") {
+  def message(): Endpoint[IO, CommonMessage] = get(usersPath :: "cm") {
     val emitter = Emitter("facebook")
     Ok(CommonMessage(
       Client(emitter.##.toString, "John Doe", System.currentTimeMillis),

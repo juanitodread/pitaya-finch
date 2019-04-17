@@ -2,17 +2,17 @@ package org.juanitodread.pitayafinch.routes.cookbook
 
 import java.util.UUID
 
-import scala.collection.mutable
-
 import cats.effect.IO
 import com.twitter.finagle.http.Status
-import io.finch._
-import io.finch.circe._
 import io.circe.generic.auto._
+import io.finch._
 import io.finch.catsEffect._
+import io.finch.circe._
 
 import org.juanitodread.pitayafinch.model.User
 import org.juanitodread.pitayafinch.routes.BaseEndpoint
+
+import scala.collection.mutable
 
 object Users extends BaseEndpoint {
 
@@ -54,7 +54,6 @@ object Users extends BaseEndpoint {
         Ok(user)
       case None => Output.empty(Status.NotFound)
     }
-
   }
 
 }

@@ -13,16 +13,14 @@ import org.juanitodread.pitayafinch.model.{ User => UserModel }
 class UsersTest extends UnitSpec {
   private val baseApi = "/pitaya-finch/api/v1/crud/users"
 
-  private val usersFixture = {
-    List(
+  def prepareUsers(): List[UserModel] = {
+    val usersFixture = List(
       UserModel(UUID.fromString("7becf740-7f1e-4cf4-b908-d67397b3503f"), "Juan", 10, None, List()),
       UserModel(UUID.fromString("7becf740-7f1e-4cf4-b908-d67397b3503a"), "Antonio", 11, None, List("admin")))
-  }
 
-  def prepareUsers(): Unit = {
-    usersFixture.foreach { user =>
+    usersFixture.map { user =>
       val userInput = Input.post(baseApi).withBody[Json](user)
-      Users.postUser().apply(userInput).awaitValueUnsafe()
+      Users.postUser().apply(userInput).awaitValueUnsafe().get
     }
   }
 
@@ -40,8 +38,10 @@ class UsersTest extends UnitSpec {
   }
 
   it should "have getUser endpoint" in {
-    prepareUsers()
-    Users.getUser().apply(Input.get(baseApi + "/none")).awaitValueUnsafe() shouldEqual None
+    val juanUser = prepareUsers().find(_.name == "Juan").get
+    Users.getUser().apply(Input.get(baseApi + s"/${juanUser.id}")).awaitValueUnsafe() shouldEqual {
+      Some(UserModel(juanUser.id, "Juan", 10, None, List()))
+    }
   }
 
   it should "have postUser endpoint" in {
@@ -53,9 +53,13 @@ class UsersTest extends UnitSpec {
   }
 
   it should "have patchUser endpoint" in {
-    prepareUsers()
-    val user = getUserByName("Juan").get
-    val patchedUser = UserModel(user.id, user.name + "Edited", user.age, user.address, user.roles)
+    val juanUser = prepareUsers().find(_.name == "Juan").get
+    val patchedUser = UserModel(
+      juanUser.id,
+      juanUser.name + "Edited",
+      juanUser.age,
+      juanUser.address,
+      juanUser.roles)
     Users.patchUser().apply(
       Input.patch(baseApi + s"/${patchedUser.id}").withBody[Json](patchedUser)).awaitValueUnsafe() should matchPattern {
         case Some(UserModel(patchedUser.id, "JuanEdited", 10, None, List())) =>
@@ -63,10 +67,9 @@ class UsersTest extends UnitSpec {
   }
 
   it should "have deleteUser endpoint" in {
-    prepareUsers()
-    val user = getUserByName("Juan").get
-    Users.deleteUser().apply(Input.delete(baseApi + s"/${user.id}")).awaitValueUnsafe() should matchPattern {
-      case Some(UserModel(user.id, "Juan", 10, None, List())) =>
+    val juanUser = prepareUsers().find(_.name == "Juan").get
+    Users.deleteUser().apply(Input.delete(baseApi + s"/${juanUser.id}")).awaitValueUnsafe() should matchPattern {
+      case Some(UserModel(juanUser.id, "Juan", 10, None, List())) =>
     }
   }
 

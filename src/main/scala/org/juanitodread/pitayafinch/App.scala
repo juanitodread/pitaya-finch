@@ -11,12 +11,12 @@ import org.juanitodread.pitayafinch.utils.AppConf
 object App extends TwitterServer with AppConf {
 
   def main(): Unit = {
-    info(s"Service starting at http://<domain>:${port}/${serverCtx}")
+    info(s"Service starting at http://<domain>:$port/$serverCtx")
 
     val server = Http.server
       .withLabel(serviceName)
       .withStatsReceiver(NullStatsReceiver)
-      .serve(s":${port}", Endpoints.toService)
+      .serve(s":$port", Endpoints.toService())
 
     onExit(server.close())
     Await.ready(adminHttpServer)

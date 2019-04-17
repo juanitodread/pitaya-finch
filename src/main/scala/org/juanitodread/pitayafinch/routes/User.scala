@@ -4,11 +4,7 @@ import cats.effect.IO
 import io.finch._
 import io.finch.catsEffect._
 
-import org.juanitodread.pitayafinch.model.{
-  Client,
-  CommonMessage,
-  Emitter
-}
+import org.juanitodread.pitayafinch.model.{ Client, CommonMessage, Emitter }
 
 object User extends BaseEndpoint {
 

@@ -5,5 +5,5 @@ import io.finch.catsEffect._
 import org.juanitodread.pitayafinch.utils.AppConf
 
 trait BaseEndpoint extends AppConf {
-  final protected val basePath = serverCtx :: api :: version
+  protected def basePath = serverCtx :: api :: version
 }

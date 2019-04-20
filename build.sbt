@@ -18,6 +18,7 @@ libraryDependencies ++= Seq(
   "com.github.finagle" %% "finchx-core" % finchVersion,
   "com.github.finagle" %% "finchx-circe" % finchVersion,
   "io.circe" %% "circe-generic" % circeVersion,
+  "io.circe" %% "circe-generic-extras" % circeVersion,
   "com.typesafe" % "config" % configVersion,
   "com.twitter" %% "twitter-server" % twitterServerVersion,
   "com.twitter" %% "finagle-stats" % twitterServerVersion,

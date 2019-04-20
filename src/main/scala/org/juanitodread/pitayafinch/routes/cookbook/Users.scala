@@ -10,13 +10,12 @@ import io.finch.catsEffect._
 import io.finch.circe._
 
 import org.juanitodread.pitayafinch.model.User
-import org.juanitodread.pitayafinch.routes.BaseEndpoint
 
 import scala.collection.mutable
 
-object Users extends BaseEndpoint {
+object Users extends CookbookEndpoint {
 
-  private final val usersPath = basePath :: "crud" :: "users"
+  private final val usersPath = basePath :: "users"
   private final val usersStore: mutable.Map[UUID, User] = mutable.Map.empty[UUID, User]
 
   def getUsers(): Endpoint[IO, List[User]] = get(usersPath) {

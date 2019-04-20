@@ -14,4 +14,6 @@ object Tokenizer {
     whitespaceTokenizer.tokenize(paragraph).toList
   }
 
+  def maxEntropy(paragraph: String): List[String] = ???
+
 }

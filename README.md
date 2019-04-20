@@ -11,6 +11,9 @@ $ sbt compile
 $ sbt run
 ```
 
+### Stats console
+![Requests metric](docs/img/stats.png)
+
 ## How to test
 ```shell
 $ sbt test

@@ -12,6 +12,8 @@ val scalatestVersion = "3.0.5"
 val twitterServerVersion = "19.2.0"
 val logbackVersion = "1.2.3"
 
+val openNlpVersion = "1.9.1"
+
 libraryDependencies ++= Seq(
   "com.github.finagle" %% "finchx-core" % finchVersion,
   "com.github.finagle" %% "finchx-circe" % finchVersion,
@@ -21,7 +23,9 @@ libraryDependencies ++= Seq(
   "com.twitter" %% "finagle-stats" % twitterServerVersion,
   "com.twitter" %% "twitter-server-logback-classic" % twitterServerVersion,
   "ch.qos.logback" % "logback-classic" % logbackVersion,
-  "org.scalatest" %% "scalatest" % scalatestVersion % "test"
+  "org.scalatest" %% "scalatest" % scalatestVersion % "test",
+
+  "org.apache.opennlp" % "opennlp-tools" % openNlpVersion
 )
 
-testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oF")
+//testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oF")

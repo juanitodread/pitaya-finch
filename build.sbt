@@ -18,6 +18,7 @@ libraryDependencies ++= Seq(
   "io.circe" %% "circe-generic" % circeVersion,
   "com.typesafe" % "config" % configVersion,
   "com.twitter" %% "twitter-server" % twitterServerVersion,
+  "com.twitter" %% "finagle-stats" % twitterServerVersion,
   "com.twitter" %% "twitter-server-logback-classic" % twitterServerVersion,
   "ch.qos.logback" % "logback-classic" % logbackVersion,
   "org.scalatest" %% "scalatest" % scalatestVersion % "test"

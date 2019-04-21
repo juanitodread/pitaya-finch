@@ -5,6 +5,7 @@ import io.circe.generic.auto._
 import io.finch._
 import io.finch.catsEffect._
 import io.finch.circe._
+
 import org.juanitodread.pitayafinch.model.nlp.tokenizer.Algorithm
 import org.juanitodread.pitayafinch.model.nlp.tokenizer.Tokenize
 import org.juanitodread.pitayafinch.nlp.tools.tokenize.Tokenizer
@@ -24,5 +25,4 @@ object TokenizerEndpoint extends NlpEndpoint {
       tokenize.algorithm,
       Some(Tokenizer.tokenize(tokenize.content, tokenize.algorithm))))
   }
-
 }

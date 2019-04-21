@@ -13,14 +13,13 @@ class UserTest extends UnitSpec {
       Input.get(baseApi)).awaitValueUnsafe().contains("Hello User"))
   }
 
-  "A User route" should "have a help endpoint" in {
+  it should "have a help endpoint" in {
     assert(User.help.apply(
       Input.get(s"$baseApi/help")).awaitValueUnsafe().contains("This is the help for users"))
   }
 
-  "A User route" should "have a message endpoint" in {
+  it should "have a message endpoint" in {
     assert(User.message.apply(
       Input.get(s"$baseApi/cm")).awaitValueUnsafe().get.isInstanceOf[CommonMessage])
   }
-
 }

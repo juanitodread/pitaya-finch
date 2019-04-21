@@ -3,14 +3,14 @@ package org.juanitodread.pitayafinch.nlp.tools.tokenize
 import java.io.File
 
 import org.juanitodread.pitayafinch.UnitSpec
+import org.juanitodread.pitayafinch.model.nlp.tokenizer.Algorithm
 
 class TokenizerSpec extends UnitSpec {
-
   "A Tokenizer" should "tokenize an empty string using simple algorithm" in {
     assert(Tokenizer.simple("") === List.empty)
   }
 
-  "A Tokenizer" should "tokenize a string using simple algorithm" in {
+  it should "tokenize a string using simple algorithm" in {
     val text = "This's a simple paragraph that requires to be tokenized, or die in the process."
     val tokenizedText = List("This", "'", "s", "a", "simple", "paragraph", "that", "requires", "to", "be",
       "tokenized", ",", "or", "die", "in", "the", "process", ".")
@@ -18,11 +18,11 @@ class TokenizerSpec extends UnitSpec {
     assert(Tokenizer.simple(text) === tokenizedText)
   }
 
-  "A Tokenizer" should "tokenize an empty string using whitespace algorithm" in {
+  it should "tokenize an empty string using whitespace algorithm" in {
     assert(Tokenizer.whitespace("") === List.empty)
   }
 
-  "A Tokenizer" should "tokenize a string using whitespace algorithm" in {
+  it should "tokenize a string using whitespace algorithm" in {
     val text = "This's a simple paragraph that requires to be tokenized, or die in the process."
     val tokenizedText = List("This's", "a", "simple", "paragraph", "that", "requires", "to", "be",
       "tokenized,", "or", "die", "in", "the", "process.")
@@ -30,11 +30,11 @@ class TokenizerSpec extends UnitSpec {
     assert(Tokenizer.whitespace(text) === tokenizedText)
   }
 
-  "A Tokenizer" should "tokenize an empty string using maximum entropy algorithm" in {
+  it should "tokenize an empty string using maximum entropy algorithm" in {
     assert(Tokenizer.maxEntropy("") === List.empty)
   }
 
-  "A Tokenizer" should "tokenize a string using maximum entropy algorithm" in {
+  it should "tokenize a string using maximum entropy algorithm" in {
     val text = "This's a simple paragraph that requires to be tokenized, or die in the process."
     val tokenizedText = List("This", "'s", "a", "simple", "paragraph", "that", "requires", "to", "be",
       "tokenized", ",", "or", "die", "in", "the", "process", ".")
@@ -42,6 +42,20 @@ class TokenizerSpec extends UnitSpec {
     assert(Tokenizer.maxEntropy(text) === tokenizedText)
   }
 
+  it should "tokenize a string with a valid SIMPLE algorithm" in {
+    val text = "This's a simple paragraph that requires to be tokenized, or die in the process."
+    assert(Tokenizer.tokenize(text, Algorithm.SIMPLE) === Tokenizer.simple(text))
+  }
+
+  it should "tokenize a string with a valid WHITESPACE algorithm" in {
+    val text = "This's a simple paragraph that requires to be tokenized, or die in the process."
+    assert(Tokenizer.tokenize(text, Algorithm.WHITESPACE) === Tokenizer.whitespace(text))
+  }
+
+  it should "tokenize a string with a valid MAX_ENTROPY algorithm" in {
+    val text = "This's a simple paragraph that requires to be tokenized, or die in the process."
+    assert(Tokenizer.tokenize(text, Algorithm.MAX_ENTROPY) === Tokenizer.maxEntropy(text))
+  }
 }
 
 class MaxEntropyModelSpec extends UnitSpec {
@@ -54,7 +68,7 @@ class MaxEntropyModelSpec extends UnitSpec {
     assert(modelFile.isDirectory === false)
   }
 
-  "A MaxEntropyModelSpec" should "return a singleton of TokenizerModel" in {
+  it should "return a singleton of TokenizerModel" in {
     val modelInstance = MaxEntropyModel.instance()
     assert(modelInstance === MaxEntropyModel.instance())
   }

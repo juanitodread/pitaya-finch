@@ -12,7 +12,9 @@ class EndpointsTest extends UnitSpec {
     s"$baseApi/help",
     s"$baseApi/users",
     s"$baseApi/users/help",
-    s"$baseApi/users/cm")
+    s"$baseApi/users/cm",
+    s"$baseApi/crud/users",
+    s"$baseApi/nlp/tokenizer")
 
   "An Endpoints object" should "provide the Finch service definition" in {
     val service = Endpoints.toService()
@@ -21,5 +23,4 @@ class EndpointsTest extends UnitSpec {
       service.apply(Request(endpointUrl)) shouldBe a[Promise[_]]
     }
   }
-
 }

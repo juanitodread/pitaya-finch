@@ -12,9 +12,8 @@ class IndexTest extends UnitSpec {
       Input.get(baseApi)).awaitValueUnsafe().contains("Hello World"))
   }
 
-  "An Index route" should "have a help endpoint" in {
+  it should "have a help endpoint" in {
     assert(Index.help.apply(
       Input.get(s"$baseApi/help")).awaitValueUnsafe().contains("This is the help for root"))
   }
-
 }

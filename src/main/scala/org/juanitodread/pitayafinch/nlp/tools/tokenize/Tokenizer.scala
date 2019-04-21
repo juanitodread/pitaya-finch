@@ -1,6 +1,13 @@
 package org.juanitodread.pitayafinch.nlp.tools.tokenize
 
-import opennlp.tools.tokenize.{ SimpleTokenizer, TokenizerME, TokenizerModel, WhitespaceTokenizer }
+import opennlp.tools.tokenize.{
+  SimpleTokenizer,
+  TokenizerME,
+  TokenizerModel,
+  WhitespaceTokenizer
+}
+
+import org.juanitodread.pitayafinch.model.nlp.tokenizer.Algorithm._
 
 object Tokenizer {
   private final val simpleTokenizer = SimpleTokenizer.INSTANCE
@@ -19,6 +26,11 @@ object Tokenizer {
     maxEntropyTokenizer.tokenize(paragraph).toList
   }
 
+  def tokenize(paragraph: String, algorithm: Algorithm): List[String] = algorithm match {
+    case SIMPLE => simple(paragraph)
+    case WHITESPACE => whitespace(paragraph)
+    case MAX_ENTROPY => maxEntropy(paragraph)
+  }
 }
 
 object MaxEntropyModel {
@@ -30,5 +42,4 @@ object MaxEntropyModel {
   def instance(): TokenizerModel = {
     model
   }
-
 }

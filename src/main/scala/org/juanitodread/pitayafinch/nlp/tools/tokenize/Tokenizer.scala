@@ -6,6 +6,7 @@ import opennlp.tools.tokenize.{
   TokenizerModel,
   WhitespaceTokenizer
 }
+
 import org.juanitodread.pitayafinch.model.nlp.tokenizer.Algorithm._
 
 object Tokenizer {

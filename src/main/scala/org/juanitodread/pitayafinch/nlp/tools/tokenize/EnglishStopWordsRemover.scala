@@ -1,7 +1,7 @@
 package org.juanitodread.pitayafinch.nlp.tools.tokenize
 
 class EnglishStopWordsRemover {
-  private final val stopWords = Set(
+  private final val stopWords: Set[String] = Set(
     "i", "a", "about", "an", "are", "as",
     "at", "be", "by", "com", "for", "from",
     "how", "in", "is", "it", "of", "on",

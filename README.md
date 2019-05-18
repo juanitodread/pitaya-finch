@@ -67,10 +67,10 @@ Returns a list of supported tokenizer algorithms.
 GET /nlp/tokenizer
 ```
 
-##### Parameters
+###### Parameters
 N/A
 
-##### Response
+###### Response
 ```javascript
 Status: 200 OK
 ```
@@ -89,14 +89,14 @@ Returns a list of tokens of the provided text using the specified algorithm.
 POST /nlp/tokenizer
 ```
  
-##### Parameters (Body)
+###### Parameters (Body)
 
 | Name | Type | Description |
 | --------- | -------- | ---- |
 | `text` | `string` | The text to be split in tokens. |
 | `algorithm` | `enum` | The tokenizer algorithm to be used. **Values:** `SIMPLE`, `WHITESPACE`, `MAX_ENTROPY`|
  
-##### Response
+###### Response
 ```javascript
 Status: 200 OK
 ```

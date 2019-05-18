@@ -19,6 +19,6 @@ object Algorithm {
 }
 
 case class Tokenize(
-  content: String,
+  text: String,
   algorithm: Algorithm.Algorithm,
   tokens: Option[List[String]])

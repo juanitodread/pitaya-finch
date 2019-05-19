@@ -1,4 +1,4 @@
-package org.juanitodread.pitayafinch.routes.nlp.tools
+package org.juanitodread.pitayafinch.routes.nlp.tools.tokenize
 
 import cats.effect.IO
 import io.circe.generic.auto._
@@ -6,8 +6,7 @@ import io.finch._
 import io.finch.catsEffect._
 import io.finch.circe._
 
-import org.juanitodread.pitayafinch.model.nlp.tokenizer.Algorithm
-import org.juanitodread.pitayafinch.model.nlp.tokenizer.Tokenize
+import org.juanitodread.pitayafinch.model.nlp.tokenizer.{ Algorithm, Tokenize }
 import org.juanitodread.pitayafinch.nlp.tools.tokenize.Tokenizer
 import org.juanitodread.pitayafinch.routes.nlp.NlpEndpoint
 

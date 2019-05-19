@@ -9,3 +9,9 @@ class LowerCaseConverter {
     tokens.map(this.toLowerCase)
   }
 }
+
+object LowerCaseConverter {
+  def apply(tokens: List[String]): List[String] = {
+    new LowerCaseConverter().toLowerCase(tokens)
+  }
+}

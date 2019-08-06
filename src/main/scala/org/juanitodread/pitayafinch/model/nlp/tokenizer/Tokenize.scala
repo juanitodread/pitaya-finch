@@ -18,7 +18,10 @@ object Algorithm {
   implicit val algorithmDecoder: Decoder[Algorithm] = deriveEnumerationDecoder[Algorithm]
 }
 
-case class Tokenize(
-  text: String,
-  algorithm: Algorithm.Algorithm,
-  tokens: Option[List[String]])
+trait Tokenize {
+  def text: String
+  def algorithm: Algorithm.Algorithm
+}
+
+case class TokenizeRequest(text: String, algorithm: Algorithm.Algorithm) extends Tokenize
+case class TokenizeResponse(text: String, algorithm: Algorithm.Algorithm, tokens: List[String]) extends Tokenize

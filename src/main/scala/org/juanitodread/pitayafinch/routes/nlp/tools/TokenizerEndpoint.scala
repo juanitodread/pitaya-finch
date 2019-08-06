@@ -18,10 +18,10 @@ object TokenizerEndpoint extends NlpEndpoint {
   }
 
   private val postedTokenize: Endpoint[IO, TokenizeRequest] = jsonBody[TokenizeRequest]
-  def tokenize(): Endpoint[IO, TokenizeResponse] = post(tokenizerPath :: postedTokenize) { tokenize: TokenizeRequest =>
+  def tokenize(): Endpoint[IO, TokenizeResponse] = post(tokenizerPath :: postedTokenize) { request: TokenizeRequest =>
     Ok(TokenizeResponse(
-      tokenize.text,
-      tokenize.algorithm,
-      Tokenizer.tokenize(tokenize.text, tokenize.algorithm)))
+      request.text,
+      request.algorithm,
+      Tokenizer.tokenize(request.text, request.algorithm)))
   }
 }

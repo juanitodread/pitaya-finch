@@ -18,7 +18,7 @@ object Algorithm {
   implicit val algorithmDecoder: Decoder[Algorithm] = deriveEnumerationDecoder[Algorithm]
 }
 
-trait Tokenize {
+sealed trait Tokenize {
   def text: String
   def algorithm: Algorithm.Algorithm
 }

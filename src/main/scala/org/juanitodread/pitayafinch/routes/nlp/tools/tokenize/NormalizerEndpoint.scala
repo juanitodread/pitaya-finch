@@ -16,9 +16,8 @@ object NormalizerEndpoint extends NlpEndpoint {
 
   private val postedTokens: Endpoint[IO, LowerCaseRequest] = jsonBody[LowerCaseRequest]
   def lowercase(): Endpoint[IO, LowerCaseResponse] = post(lowercasePath :: postedTokens) { request: LowerCaseRequest =>
-    val lowerCase = new LowerCaseConverter()
     Ok(LowerCaseResponse(
       request.tokens,
-      lowerCase.toLowerCase(request.tokens)))
+      LowerCaseConverter(request.tokens)))
   }
 }

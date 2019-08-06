@@ -1,6 +1,7 @@
 package org.juanitodread.pitayafinch.routes.nlp
 
 import io.finch.catsEffect._
+
 import org.juanitodread.pitayafinch.routes.BaseEndpoint
 import org.juanitodread.pitayafinch.routes.nlp.tools.tokenize.{ NormalizerEndpoint, TokenizerEndpoint }
 

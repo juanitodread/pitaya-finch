@@ -1,10 +1,9 @@
-package org.juanitodread.pitayafinch.routes.nlp.tools
+package org.juanitodread.pitayafinch.routes.nlp.tools.tokenize
 
 import io.circe.generic.auto._
 import io.finch.Application.Json
 import io.finch.Input
 import io.finch.circe._
-
 import org.juanitodread.pitayafinch.UnitSpec
 import org.juanitodread.pitayafinch.model.nlp.tokenizer.{
   Algorithm,

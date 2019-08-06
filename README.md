@@ -116,7 +116,41 @@ Status: 200 OK
  
 #### Normalizer
 ##### Lowercase converter
-TBD
+Returns a list of tokens in lower case format.
+ 
+```
+POST /nlp/normalizer/lowercase
+```
+ 
+###### Parameters (Body)
+
+| Name | Type | Description |
+| --------- | -------- | ---- |
+| `tokens` | `array[String]` | The list of tokens to be lower cased. |
+ 
+###### Response
+```javascript
+Status: 200 OK
+```
+```javascript
+{
+    "tokens": [
+        "ThIs",
+        "requires",
+        "TO",
+        "BE",
+        "lOwErCasED"
+    ],
+    "result": [
+        "this",
+        "requires",
+        "to",
+        "be",
+        "lowercased"
+    ]
+}
+```
+
  
 ##### Stopwords remover
 TBD

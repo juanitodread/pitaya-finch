@@ -153,7 +153,7 @@ Status: 200 OK
 
  
 ##### Stopwords remover
-Returns a list of tokens without stopwords. Stopwords removed are those in English.
+Returns a list of tokens without stopwords. Stopwords works for English.
  
 ```
 POST /nlp/normalizer/stopwords
@@ -187,7 +187,41 @@ Status: 200 OK
 
  
 ##### Stemmer
-TBD
+Returns a list of pairs with the word and their respective Stem. Stemmer works for English.
+ 
+```
+POST /nlp/normalizer/stem
+```
+ 
+###### Parameters (Body)
+
+| Name | Type | Description |
+| --------- | -------- | ---- |
+| `tokens` | `array[String]` | The list of tokens to get their stem. |
+ 
+###### Response
+```javascript
+Status: 200 OK
+```
+```javascript
+{
+    "tokens": [
+        "banking",
+        "bank",
+        "banked",
+        "became",
+        "become"
+    ],
+    "result": [
+        {"orginal": "banking", "stem": "bank"},
+        {"orginal": "bank", "stem": "bank"},
+        {"orginal": "banked", "stem": "bank"},
+        {"orginal": "became", "stem": "becom"},
+        {"orginal": "become", "stem": "becom"}
+    ]
+}
+```
+
  
 ##### Lemmatizer
 TBD

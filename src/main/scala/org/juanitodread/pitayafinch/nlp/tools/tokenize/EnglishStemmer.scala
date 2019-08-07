@@ -22,3 +22,9 @@ class EnglishStemmer {
     tokens.map(this.stemKeepOriginal)
   }
 }
+
+object EnglishStemmer {
+  def apply(tokens: List[String]): List[StemResult] = {
+    new EnglishStemmer().stemKeepOriginal(tokens)
+  }
+}

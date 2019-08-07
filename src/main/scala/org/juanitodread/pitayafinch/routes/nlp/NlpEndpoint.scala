@@ -14,6 +14,7 @@ object NlpEndpoints {
     TokenizerEndpoint.getAlgorithms() :+:
       TokenizerEndpoint.tokenize() :+:
       NormalizerEndpoint.lowercase() :+:
-      NormalizerEndpoint.stopwords()
+      NormalizerEndpoint.stopwords() :+:
+      NormalizerEndpoint.stemmer()
   }
 }

@@ -28,4 +28,13 @@ class NormalizerEndpointSpec extends UnitSpec {
         List("should", "lowercase")))
     }
   }
+
+  "A NormalizerEndpoint route" should "have stem endpoint" in {
+    val request = StemRequest(List("bank", "banking", "banked"))
+    NormalizerEndpoint.stemmer().apply(Input.post(s"$baseApi/stem").withBody[Json](request)).awaitValueUnsafe() should equal {
+      Some(StemResponse(
+        List("bank", "banking", "banked"),
+        List(StemResult("bank", "bank"), StemResult("banking", "bank"), StemResult("banked", "bank"))))
+    }
+  }
 }

@@ -12,3 +12,9 @@ class EnglishStopWordsRemover {
     tokens.filter(token => !stopWords.contains(token))
   }
 }
+
+object EnglishStopWordsRemover {
+  def apply(tokens: List[String]): List[String] = {
+    new EnglishStopWordsRemover().remove(tokens)
+  }
+}

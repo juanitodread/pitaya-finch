@@ -8,6 +8,7 @@ class NlpEndpointsSpec extends UnitSpec {
     NlpEndpoints.build().toString should equal((
       TokenizerEndpoint.getAlgorithms() :+:
       TokenizerEndpoint.tokenize() :+:
-      NormalizerEndpoint.lowercase()).toString)
+      NormalizerEndpoint.lowercase() :+:
+      NormalizerEndpoint.stopwords()).toString)
   }
 }

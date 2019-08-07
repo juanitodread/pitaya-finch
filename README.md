@@ -153,7 +153,38 @@ Status: 200 OK
 
  
 ##### Stopwords remover
-TBD
+Returns a list of tokens without stopwords. Stopwords removed are those in English.
+ 
+```
+POST /nlp/normalizer/stopwords
+```
+ 
+###### Parameters (Body)
+
+| Name | Type | Description |
+| --------- | -------- | ---- |
+| `tokens` | `array[String]` | The list of tokens to remove stopwords. |
+ 
+###### Response
+```javascript
+Status: 200 OK
+```
+```javascript
+{
+    "tokens": [
+        "this",
+        "requires",
+        "to",
+        "be",
+        "lowercased"
+    ],
+    "result": [
+        "requires",
+        "lowercased"
+    ]
+}
+```
+
  
 ##### Stemmer
 TBD

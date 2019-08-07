@@ -13,6 +13,7 @@ object NlpEndpoints {
   def build() = {
     TokenizerEndpoint.getAlgorithms() :+:
       TokenizerEndpoint.tokenize() :+:
-      NormalizerEndpoint.lowercase()
+      NormalizerEndpoint.lowercase() :+:
+      NormalizerEndpoint.stopwords()
   }
 }

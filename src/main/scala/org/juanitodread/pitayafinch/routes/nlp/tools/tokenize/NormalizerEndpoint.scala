@@ -15,6 +15,7 @@ object NormalizerEndpoint extends NlpEndpoint {
   private final val lowercasePath = normalizerPath :: "lowercase"
   private final val stopwordsPath = normalizerPath :: "stopwords"
   private final val stemPath = normalizerPath :: "stem"
+  private final val lemmaPath = normalizerPath :: "lemma"
 
   private val postedLower: Endpoint[IO, LowerCaseRequest] = jsonBody[LowerCaseRequest]
   def lowercase(): Endpoint[IO, LowerCaseResponse] = post(lowercasePath :: postedLower) { request: LowerCaseRequest =>
@@ -35,5 +36,12 @@ object NormalizerEndpoint extends NlpEndpoint {
     Ok(StemResponse(
       request.tokens,
       EnglishStemmer(request.tokens)))
+  }
+
+  private val postedLemma: Endpoint[IO, LemmaRequest] = jsonBody[LemmaRequest]
+  def lemmatizer(): Endpoint[IO, LemmaResponse] = post(lemmaPath :: postedLemma) { request: LemmaRequest =>
+    Ok(LemmaResponse(
+      request.tokens,
+      EnglishLemmatizer(request.tokens)))
   }
 }

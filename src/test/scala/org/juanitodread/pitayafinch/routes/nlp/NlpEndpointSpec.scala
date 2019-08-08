@@ -10,6 +10,7 @@ class NlpEndpointsSpec extends UnitSpec {
       TokenizerEndpoint.tokenize() :+:
       NormalizerEndpoint.lowercase() :+:
       NormalizerEndpoint.stopwords() :+:
-      NormalizerEndpoint.stemmer()).toString)
+      NormalizerEndpoint.stemmer() :+:
+      NormalizerEndpoint.lemmatizer()).toString)
   }
 }

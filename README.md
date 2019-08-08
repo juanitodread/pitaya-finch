@@ -224,7 +224,48 @@ Status: 200 OK
 
  
 ##### Lemmatizer
-TBD
+Returns a list of pairs with the word and their respective Lemmas. Lemmatizer works for English.
+ 
+```
+POST /nlp/normalizer/lemma
+```
+ 
+###### Parameters (Body)
+
+| Name | Type | Description |
+| --------- | -------- | ---- |
+| `tokens` | `array[String]` | The list of tokens to get their lemmas. |
+ 
+###### Response
+```javascript
+Status: 200 OK
+```
+```javascript
+{
+    "tokens": [
+        "bob",
+        "hello"
+    ],
+    "result": [
+        {
+            "original": "bob",
+            "lemmas": [
+                {"tag": "NNS", "description": "Noun, plural"},
+                {"tag": "NN", "description": "Noun, singular or mass"},
+                {"tag": "VB", "description": "Verb, base form"},
+                {"tag": "VBP", "description": "Verb, non-3rd person singular present"}
+            ]
+        },
+        {
+            "original": "hello",
+            "lemmas": [
+                {"tag": "NN", "description": "Noun, singular or mass"}
+            ]
+        }
+    ]
+}
+```
+
  
 #### Pipeline: Token processing pipeline
 TBD

@@ -29,4 +29,4 @@ libraryDependencies ++= Seq(
   "org.apache.opennlp" % "opennlp-tools" % openNlpVersion
 )
 
-//testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oF")
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-eNDXEHLO")

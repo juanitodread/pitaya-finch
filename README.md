@@ -23,8 +23,14 @@ $ sbt run
 
 
 # How to test
+To run all the test suite
 ```shell
 $ sbt test
+```
+
+To run a specific test case
+```shell
+$ sbt testOnly *<class-spec-name>
 ```
 
 

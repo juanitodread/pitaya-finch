@@ -274,4 +274,53 @@ Status: 200 OK
 
  
 #### Pipeline: Token processing pipeline
-TBD
+Process the provided text using the specified algorithms in the sequence defined by the Pipeline object.
+
+A Pipeline object has three main components or steps:
+
+* **init:** Is the first stage of the Pipeline. The *type* of this stage is `String => List[String]`. We only support `Tokenizer` algorithm for **init** stage.
+* **stages:** Is a list of *stage* (algorithms) which will be applied to the result of the previous stage. The *type* of this stage is `List[String] => List[String]`.
+* **result:** Is the last stage of the Pipeline. The *type* of this stage is `List[String] => Result`.
+
+| Stage     | Algorithms | Description |
+| --------- | ---------- | ----------- |
+| `init` | `Tokenizer` | The text to be split in tokens. |
+| `stage` | `Lowercase converter`, `Stop words remover` | Tokens to be processed and the result is a list of tokens. |
+| `result` | `Stemmer`, `Lemmatizer` | The list of tokens to be processed by a final stage which reproduces a *Result*. |
+ 
+```
+POST /nlp/pipeline
+```
+ 
+###### Parameters (Body)
+
+| Name | Type | Description |
+| --------- | -------- | ---- |
+| `text` | `string` | The text to be split in tokens. |
+| `pipeline` | `object` | The pipeline definition. |
+| `pipeline.init` | `object` | The first stage of the pipeline processing. |
+| `pipeline.stages` | `array[object]` | A list of stage objects. |
+| `pipeline.result` | `object` | The result of the pipeline processing. |
+
+###### Example
+```javascript
+{
+  "text": "tokenizeame este otro texto.",
+  "pipeline": {
+    "init": {"algorithm": "tokenizer"},
+    "stages": [
+      {"algorithm": "lowercase"},
+      {"algorithm": "stopper"}
+    ],
+    "result": {"algorithm": "stem"}
+  }
+}
+```
+ 
+###### Response
+```javascript
+Status: 200 OK
+```
+```javascript
+{}
+```

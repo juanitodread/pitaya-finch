@@ -29,4 +29,15 @@ libraryDependencies ++= Seq(
   "org.apache.opennlp" % "opennlp-tools" % openNlpVersion
 )
 
+mainClass in Compile := Some("org.juanitodread.pitayafinch.App")
+
 testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-eNDXEHLO")
+
+// Docker stuff
+enablePlugins(JavaAppPackaging)
+enablePlugins(DockerPlugin)
+enablePlugins(AshScriptPlugin)
+
+dockerBaseImage := "openjdk:jre-alpine"
+
+dockerExposedPorts ++= Seq(8080, 9990)

@@ -6,7 +6,11 @@ import io.finch._
 import io.finch.catsEffect._
 import io.finch.circe._
 
-import org.juanitodread.pitayafinch.model.nlp.tokenizer.{ Algorithm, TokenizeRequest, TokenizeResponse }
+import org.juanitodread.pitayafinch.model.nlp.tokenizer.{
+  TokenizeRequest,
+  TokenizeResponse,
+  Tokenizers
+}
 import org.juanitodread.pitayafinch.nlp.tools.tokenize.Tokenizer
 import org.juanitodread.pitayafinch.routes.nlp.NlpEndpoint
 
@@ -14,7 +18,7 @@ object TokenizerEndpoint extends NlpEndpoint {
   private final val tokenizerPath = basePath :: "tokenizer"
 
   def getAlgorithms(): Endpoint[IO, List[String]] = get(tokenizerPath) {
-    Ok(Algorithm.getAlgorithms())
+    Ok(Tokenizers.getAlgorithms())
   }
 
   private val postedTokenize: Endpoint[IO, TokenizeRequest] = jsonBody[TokenizeRequest]

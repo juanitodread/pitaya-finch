@@ -4,9 +4,10 @@ import io.circe.generic.auto._
 import io.finch.Application.Json
 import io.finch.Input
 import io.finch.circe._
+
 import org.juanitodread.pitayafinch.UnitSpec
 import org.juanitodread.pitayafinch.model.nlp.tokenizer.{
-  Algorithm,
+  Tokenizers,
   TokenizeRequest,
   TokenizeResponse
 }
@@ -21,11 +22,11 @@ class TokenizerEndpointSpec extends UnitSpec {
   }
 
   it should "have tokenize endpoint" in {
-    val request = TokenizeRequest("This's a sample text", Algorithm.SIMPLE)
+    val request = TokenizeRequest("This's a sample text", Tokenizers.SIMPLE)
     TokenizerEndpoint.tokenize().apply(Input.post(baseApi).withBody[Json](request)).awaitValueUnsafe() should equal {
       Some(TokenizeResponse(
         "This's a sample text",
-        Algorithm.SIMPLE,
+        Tokenizers.SIMPLE,
         List("This", "'", "s", "a", "sample", "text")))
     }
   }

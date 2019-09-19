@@ -34,7 +34,7 @@ case object Empty extends Result[Tokens, Tokens] {
 }
 
 case class PipelineBuilder[R](
-  source: Tokenizer,
+  source: Source[Tokens],
   steps: List[Step[Tokens, Tokens]],
   result: Result[Tokens, R] = Empty) {
   def build() = {

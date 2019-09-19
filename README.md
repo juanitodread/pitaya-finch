@@ -274,4 +274,66 @@ Status: 200 OK
 
  
 #### Pipeline: Token processing pipeline
-TBD
+Process the provided text using the specified algorithms in the sequence defined by the Pipeline object.
+
+A Pipeline object has three main components or steps:
+
+* **init:** Is the first stage of the Pipeline. The *type* of this stage is `String => List[String]`. We only support `Tokenizer` algorithm for **init** stage.
+* **stages:** Is a list of *stage* (algorithms) which will be applied to the result of the previous stage. The *type* of this stage is `List[String] => List[String]`.
+* **finalizer:** Is the last stage of the Pipeline. The *type* of this stage is `List[String] => Result`.
+
+| Stage     | Algorithms | Description |
+| --------- | ---------- | ----------- |
+| `init` | `TOKENIZER` | The text to be split in tokens. |
+| `stage` | `LOWERCASE`, `STOPWORDS` | Tokens to be processed and the result is a list of tokens. |
+| `finalizer` | `STEMMER`, `LEMMATIZER` | The list of tokens to be processed by a final stage which produces a *Result*. |
+ 
+```
+POST /nlp/pipeline
+```
+ 
+###### Parameters (Body)
+
+| Name | Type | Description |
+| --------- | -------- | ---- |
+| `text` | `string` | The text to be split in tokens. |
+| `pipeline` | `object` | The pipeline definition. |
+| `pipeline.init` | `object` | The first stage of the pipeline processing. |
+| `pipeline.stages` | `array[object]` | A list of stage objects. |
+| `pipeline.finalizer` | `object` | The last stage of the pipeline processing. This stage must return a result. |
+
+###### Example
+```javascript
+{
+    "text": "Hello World",
+    "pipeline": {
+        "init": { "algorithm": "TOKENIZER", "strategy": "MAX_ENTROPY" },
+        "stages": [
+            { "algorithm": "LOWERCASE" },
+            { "algorithm": "STOPWORDS" }
+        ],
+        "finalizer": { "algorithm": "STEMMER" }
+    }
+}
+```
+ 
+###### Response
+```javascript
+Status: 200 OK
+```
+```javascript
+{
+    "pipeline": "Tokenizer -> LowerCaseConverter -> StopWordsRemover -> Stemmer",
+    "stemmerResult": [
+        {
+            "original": "hello",
+            "stem": "hello"
+        },
+        {
+            "original": "world",
+            "stem": "world"
+        }
+    ],
+    "lemmaResult": null
+}
+```

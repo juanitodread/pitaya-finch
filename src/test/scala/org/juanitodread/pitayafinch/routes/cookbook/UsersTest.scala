@@ -11,7 +11,7 @@ import org.juanitodread.pitayafinch.UnitSpec
 import org.juanitodread.pitayafinch.model.{ User => UserModel }
 
 class UsersTest extends UnitSpec {
-  private val baseApi = "/pitaya-finch/api/v1/crud/users"
+  private val baseApi = "/pitaya/api/v1/crud/users"
 
   def prepareUsers(): List[UserModel] = {
     val usersFixture = List(

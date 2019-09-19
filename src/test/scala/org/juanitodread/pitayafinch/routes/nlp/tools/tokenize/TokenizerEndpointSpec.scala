@@ -13,7 +13,7 @@ import org.juanitodread.pitayafinch.model.nlp.tokenizer.{
 }
 
 class TokenizerEndpointSpec extends UnitSpec {
-  private val baseApi = "/pitaya-finch/api/v1/nlp/tokenizer"
+  private val baseApi = "/pitaya/api/v1/nlp/tokenizer"
 
   "A TokenizerEndpoint route" should "have getAlgorithms endpoint" in {
     TokenizerEndpoint.getAlgorithms().apply(Input.get(baseApi)).awaitValueUnsafe().get should equal {

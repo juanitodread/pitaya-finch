@@ -97,7 +97,7 @@ The current version of this API is **v1**.
 All data is sent and received as **JSON**.
  
 ### Root endpoint
-The root endpoint is: `http://<host>:<port>/pitaya-finch/api/v1/`
+The root endpoint is: `http://<host>:<port>/pitaya/api/v1/`
  
  
 ## NLP

@@ -9,7 +9,7 @@ import org.juanitodread.pitayafinch.UnitSpec
 import org.juanitodread.pitayafinch.model.nlp.tokenizer._
 
 class NormalizerEndpointSpec extends UnitSpec {
-  private val baseApi = "/pitaya-finch/api/v1/nlp/normalizer"
+  private val baseApi = "/pitaya/api/v1/nlp/normalizer"
 
   "A NormalizerEndpoint route" should "have lowercase endpoint" in {
     val request = LowerCaseRequest(List("This", "SHOULD", "bE", "lOwErcASE"))

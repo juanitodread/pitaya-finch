@@ -9,7 +9,7 @@ import org.juanitodread.pitayafinch.UnitSpec
 import org.juanitodread.pitayafinch.model.nlp.tokenizer._
 
 class PipelineEndpointSpec extends UnitSpec {
-  private val baseApi = "/pitaya-finch/api/v1/nlp/pipeline"
+  private val baseApi = "/pitaya/api/v1/nlp/pipeline"
 
   "A PipelineEndpoint route" should "have pipeline endpoint" in {
     val request = PipelineRequest(

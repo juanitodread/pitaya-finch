@@ -1,0 +1,22 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/scala"
+    }
+  ],
+  "description": "Heroku pipeline",
+  "env": {
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "pitaya-finch",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}

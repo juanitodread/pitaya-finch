@@ -3,7 +3,7 @@ package org.juanitodread.pitayafinch.nlp.tools.tokenize
 import java.io.File
 
 import org.juanitodread.pitayafinch.UnitSpec
-import org.juanitodread.pitayafinch.model.nlp.tokenizer.Algorithm
+import org.juanitodread.pitayafinch.model.nlp.tokenizer.Tokenizers
 
 class TokenizerSpec extends UnitSpec {
   "A Tokenizer" should "tokenize an empty string using simple algorithm" in {
@@ -44,17 +44,17 @@ class TokenizerSpec extends UnitSpec {
 
   it should "tokenize a string with a valid SIMPLE algorithm" in {
     val text = "This's a simple paragraph that requires to be tokenized, or die in the process."
-    assert(Tokenizer.tokenize(text, Algorithm.SIMPLE) === Tokenizer.simple(text))
+    assert(Tokenizer.tokenize(text, Tokenizers.SIMPLE) === Tokenizer.simple(text))
   }
 
   it should "tokenize a string with a valid WHITESPACE algorithm" in {
     val text = "This's a simple paragraph that requires to be tokenized, or die in the process."
-    assert(Tokenizer.tokenize(text, Algorithm.WHITESPACE) === Tokenizer.whitespace(text))
+    assert(Tokenizer.tokenize(text, Tokenizers.WHITESPACE) === Tokenizer.whitespace(text))
   }
 
   it should "tokenize a string with a valid MAX_ENTROPY algorithm" in {
     val text = "This's a simple paragraph that requires to be tokenized, or die in the process."
-    assert(Tokenizer.tokenize(text, Algorithm.MAX_ENTROPY) === Tokenizer.maxEntropy(text))
+    assert(Tokenizer.tokenize(text, Tokenizers.MAX_ENTROPY) === Tokenizer.maxEntropy(text))
   }
 }
 

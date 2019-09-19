@@ -59,3 +59,12 @@ class EnglishLemmatizer(dictionaryPath: String) {
     tokens.map(this.lemmatize)
   }
 }
+
+object EnglishLemmatizer {
+  val dictionary = "/nlp/models/tokenizer/lemmatizer/en-lemmatizer.dict"
+  private val lemmatizer = new EnglishLemmatizer(dictionary)
+
+  def apply(tokens: List[String]): List[LemmaResult] = {
+    lemmatizer.lemmatize(tokens)
+  }
+}

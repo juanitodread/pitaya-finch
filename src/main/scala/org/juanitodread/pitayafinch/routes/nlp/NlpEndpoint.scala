@@ -3,7 +3,7 @@ package org.juanitodread.pitayafinch.routes.nlp
 import io.finch.catsEffect._
 
 import org.juanitodread.pitayafinch.routes.BaseEndpoint
-import org.juanitodread.pitayafinch.routes.nlp.tools.tokenize.{ NormalizerEndpoint, TokenizerEndpoint }
+import org.juanitodread.pitayafinch.routes.nlp.tools.tokenize.{ NormalizerEndpoint, PipelineEndpoint, TokenizerEndpoint }
 
 trait NlpEndpoint extends BaseEndpoint {
   override protected def basePath = super.basePath :: "nlp"
@@ -15,6 +15,8 @@ object NlpEndpoints {
       TokenizerEndpoint.tokenize() :+:
       NormalizerEndpoint.lowercase() :+:
       NormalizerEndpoint.stopwords() :+:
-      NormalizerEndpoint.stemmer()
+      NormalizerEndpoint.stemmer() :+:
+      NormalizerEndpoint.lemmatizer() :+:
+      PipelineEndpoint.pipeline()
   }
 }

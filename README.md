@@ -7,24 +7,67 @@ Finch endpoints are deployed on Finagle which already provides a super performan
 
 # Contents
 1) [How to run](#how-to-run)
-2) [How to test](#how-to-test)
-3) [API definition](#api-definition)
+1) [How to run in Docker](#how-to-run-in-docker)
+1) [How to test](#how-to-test)
+1) [API definition](#api-definition)
 
 
-# How to run
+# How to run in local
 This project uses Twitter-Server to wrap the entire service and provide useful tools for monitoring. When runing the project you can _admin_ your service through: `http://<domain>:9990`
 ```shell
 $ sbt compile
 $ sbt run
 ```
 
+# How to run in Docker
+Docker image is created with *SBT Native Packager*.
+
+You just need to run:
+```shell script
+$ sbt docker:publishLocal
+>
+[info] Successfully tagged pitaya-finch:0.1.0
+[info] Built image pitaya-finch with tags [0.1.0]
+```
+
+Then verify the image was created:
+```shell script
+$ docker image ls
+>
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+pitaya-finch        0.1.0               a17a221ee435        2 minutes ago       130MB
+<none>              <none>              22c83e7018ca        2 minutes ago       177MB
+openjdk             jre-alpine          ccfb0c83b2fe        14 months ago       83MB
+```
+
+Run the Docker container:
+```shell script
+$ docker run --rm -p 80:8080 90:9990 pitaya-finch:0.1.0
+>
+[2019/09/19 21:27:11.622 GMT - main] INFO com.twitter.util.logging.Slf4jBridgeUtility$.info - org.slf4j.bridge.SLF4JBridgeHandler installed.
+[2019/09/19 21:27:12.701 GMT - main] INFO com.twitter.finagle.http.HttpMuxer$.$anonfun$new$1 - HttpMuxer[/admin/metrics.json] = com.twitter.finagle.stats.MetricsExporter(com.twitter.finagle.stats.MetricsExporter)
+[2019/09/19 21:27:12.703 GMT - main] INFO com.twitter.finagle.http.HttpMuxer$.$anonfun$new$1 - HttpMuxer[/admin/per_host_metrics.json] = com.twitter.finagle.stats.HostMetricsExporter(com.twitter.finagle.stats.HostMetricsExporter)
+[2019/09/19 21:27:13.275 GMT - main] INFO org.juanitodread.pitayafinch.App$.startServer - Serving admin http on 0.0.0.0/0.0.0.0:9990
+[2019/09/19 21:27:14.169 GMT - main] INFO com.twitter.finagle.$anonfun$once$1 - Finagle version 19.2.0 (rev=7576e54f801ef5b74dc86ca50b365fbe0de780d9) built at 20190221-122249
+[2019/09/19 21:27:14.453 GMT - main] INFO org.juanitodread.pitayafinch.App$.info - Service starting at http://127.0.0.1:8080/pitaya 
+```
+
+* The API will be listening at port: 80
+* The admin console will be listening at port: 90
+
 ## Stats console
 ![Requests metric](docs/img/stats.png)
 
 
 # How to test
+To run all the test suite
 ```shell
 $ sbt test
+```
+
+To run a specific test case
+```shell
+$ sbt testOnly *<class-spec-name>
 ```
 
 
@@ -224,7 +267,110 @@ Status: 200 OK
 
  
 ##### Lemmatizer
-TBD
+Returns a list of pairs with the word and their respective Lemmas. Lemmatizer works for English.
+ 
+```
+POST /nlp/normalizer/lemma
+```
+ 
+###### Parameters (Body)
+
+| Name | Type | Description |
+| --------- | -------- | ---- |
+| `tokens` | `array[String]` | The list of tokens to get their lemmas. |
+ 
+###### Response
+```javascript
+Status: 200 OK
+```
+```javascript
+{
+    "tokens": [
+        "bob",
+        "hello"
+    ],
+    "result": [
+        {
+            "original": "bob",
+            "lemmas": [
+                {"tag": "NNS", "description": "Noun, plural"},
+                {"tag": "NN", "description": "Noun, singular or mass"},
+                {"tag": "VB", "description": "Verb, base form"},
+                {"tag": "VBP", "description": "Verb, non-3rd person singular present"}
+            ]
+        },
+        {
+            "original": "hello",
+            "lemmas": [
+                {"tag": "NN", "description": "Noun, singular or mass"}
+            ]
+        }
+    ]
+}
+```
+
  
 #### Pipeline: Token processing pipeline
-TBD
+Process the provided text using the specified algorithms in the sequence defined by the Pipeline object.
+
+A Pipeline object has three main components or steps:
+
+* **init:** Is the first stage of the Pipeline. The *type* of this stage is `String => List[String]`. We only support `Tokenizer` algorithm for **init** stage.
+* **stages:** Is a list of *stage* (algorithms) which will be applied to the result of the previous stage. The *type* of this stage is `List[String] => List[String]`.
+* **finalizer:** Is the last stage of the Pipeline. The *type* of this stage is `List[String] => Result`.
+
+| Stage     | Algorithms | Description |
+| --------- | ---------- | ----------- |
+| `init` | `TOKENIZER` | The text to be split in tokens. |
+| `stage` | `LOWERCASE`, `STOPWORDS` | Tokens to be processed and the result is a list of tokens. |
+| `finalizer` | `STEMMER`, `LEMMATIZER` | The list of tokens to be processed by a final stage which produces a *Result*. |
+ 
+```
+POST /nlp/pipeline
+```
+ 
+###### Parameters (Body)
+
+| Name | Type | Description |
+| --------- | -------- | ---- |
+| `text` | `string` | The text to be split in tokens. |
+| `pipeline` | `object` | The pipeline definition. |
+| `pipeline.init` | `object` | The first stage of the pipeline processing. |
+| `pipeline.stages` | `array[object]` | A list of stage objects. |
+| `pipeline.finalizer` | `object` | The last stage of the pipeline processing. This stage must return a result. |
+
+###### Example
+```javascript
+{
+    "text": "Hello World",
+    "pipeline": {
+        "init": { "algorithm": "TOKENIZER", "strategy": "MAX_ENTROPY" },
+        "stages": [
+            { "algorithm": "LOWERCASE" },
+            { "algorithm": "STOPWORDS" }
+        ],
+        "finalizer": { "algorithm": "STEMMER" }
+    }
+}
+```
+ 
+###### Response
+```javascript
+Status: 200 OK
+```
+```javascript
+{
+    "pipeline": "Tokenizer -> LowerCaseConverter -> StopWordsRemover -> Stemmer",
+    "stemmerResult": [
+        {
+            "original": "hello",
+            "stem": "hello"
+        },
+        {
+            "original": "world",
+            "stem": "world"
+        }
+    ],
+    "lemmaResult": null
+}
+```

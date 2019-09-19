@@ -37,4 +37,15 @@ class NormalizerEndpointSpec extends UnitSpec {
         List(StemResult("bank", "bank"), StemResult("banking", "bank"), StemResult("banked", "bank"))))
     }
   }
+
+  "A NormalizerEndpoint route" should "have lemma endpoint" in {
+    val request = LemmaRequest(List("hello", "bye"))
+    NormalizerEndpoint.lemmatizer().apply(Input.post(s"$baseApi/lemma").withBody[Json](request)).awaitValueUnsafe() should equal {
+      Some(LemmaResponse(
+        List("hello", "bye"),
+        List(
+          LemmaResult("hello", List(Lemma("NN", "Noun, singular or mass"))),
+          LemmaResult("bye", List(Lemma("JJ", "Adjective"), Lemma("NN", "Noun, singular or mass"))))))
+    }
+  }
 }

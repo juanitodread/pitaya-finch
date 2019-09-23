@@ -370,7 +370,8 @@ Status: 200 OK
             "original": "world",
             "stem": "world"
         }
-    ],
-    "lemmaResult": null
+    ]
 }
 ```
+
+**Note:** If the finalizer is `LEMMATIZER` algorithm, the *Result* property will be `lemmaResult`

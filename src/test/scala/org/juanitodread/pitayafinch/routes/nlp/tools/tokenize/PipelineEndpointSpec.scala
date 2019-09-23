@@ -29,4 +29,40 @@ class PipelineEndpointSpec extends UnitSpec {
         None))
     }
   }
+
+  "A PipelineEndpoint route with finalizer Stemmer algorithm" should "should return a PipelineResponse with LemmaResult as None" in {
+    val request = PipelineRequest(
+      "This's a sample text",
+      Pipeline(
+        Init(Initializers.TOKENIZER, Tokenizers.WHITESPACE),
+        List(Stage(Stagers.LOWERCASE)),
+        Finalizer(Finalizers.STEMMER)))
+    PipelineEndpoint.pipeline().apply(Input.post(baseApi).withBody[Json](request)).awaitValueUnsafe() should equal {
+      Some(PipelineResponse(
+        pipeline = "Tokenizer -> LowerCaseConverter -> Stemmer",
+        stemmerResult = Some(List(
+          StemResult("this's", "this'"),
+          StemResult("a", "a"),
+          StemResult("sample", "sampl"),
+          StemResult("text", "text"))),
+        lemmaResult = None))
+    }
+  }
+
+  "A PipelineEndpoint route with finalizer Lemmatizer algorithm" should "should return a PipelineResponse with StemResult as None" in {
+    val request = PipelineRequest(
+      "hello",
+      Pipeline(
+        Init(Initializers.TOKENIZER, Tokenizers.WHITESPACE),
+        List(Stage(Stagers.LOWERCASE)),
+        Finalizer(Finalizers.LEMMATIZER)))
+    PipelineEndpoint.pipeline().apply(Input.post(baseApi).withBody[Json](request)).awaitValueUnsafe() should equal {
+      Some(PipelineResponse(
+        pipeline = "Tokenizer -> LowerCaseConverter -> Lemmatizer",
+        stemmerResult = None,
+        lemmaResult = Some(List(
+          LemmaResult("hello", List(
+            Lemma("NN", "Noun, singular or mass")))))))
+    }
+  }
 }

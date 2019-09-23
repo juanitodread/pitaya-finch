@@ -6,7 +6,7 @@ import com.twitter.util.logging.Logging
 import io.circe.generic.auto._
 import io.circe.{ Encoder, Json }
 import io.finch._
-import io.finch.circe._
+import io.finch.circe.dropNullValues._
 
 import org.juanitodread.pitayafinch.routes.cookbook.CookbookEndpoints
 import org.juanitodread.pitayafinch.routes.nlp.NlpEndpoints

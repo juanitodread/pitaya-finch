@@ -1,7 +1,8 @@
 package org.juanitodread.pitayafinch.routes.nlp
 
 import org.juanitodread.pitayafinch.UnitSpec
-import org.juanitodread.pitayafinch.routes.nlp.tools.tokenize.{ NormalizerEndpoint, PipelineEndpoint, TokenizerEndpoint }
+import org.juanitodread.pitayafinch.routes.nlp.tools.tokenize._
+import org.juanitodread.pitayafinch.routes.nlp.tools.sentences._
 
 class NlpEndpointsSpec extends UnitSpec {
   "A NlpEndpointsSpec" should "build NLP endpoints" in {
@@ -12,6 +13,7 @@ class NlpEndpointsSpec extends UnitSpec {
       NormalizerEndpoint.stopwords() :+:
       NormalizerEndpoint.stemmer() :+:
       NormalizerEndpoint.lemmatizer() :+:
-      PipelineEndpoint.pipeline()).toString)
+      PipelineEndpoint.pipeline() :+:
+      FinderEndpoint.find()).toString)
   }
 }

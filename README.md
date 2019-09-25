@@ -87,6 +87,8 @@ $ sbt testOnly *<class-spec-name>
           1. [Stemmer](#stemmer)
           1. [Lemmatizer](#lemmatizer)
       1. [Pipeline: Token processing pipeline](#pipeline-token-processing-pipeline)
+  1. [Sentence Detector](#sentence-detector)
+      1. [Find sentences](#find-sentences)
   
   
 ## General
@@ -375,3 +377,34 @@ Status: 200 OK
 ```
 
 **Note:** If the finalizer is `LEMMATIZER` algorithm, the *Result* property will be `lemmaResult`
+
+
+### Sentence Detector
+#### Find sentences
+Returns a list of sentences according to the given text (paragraph).
+ 
+```
+POST /nlp/sentence/find
+```
+ 
+###### Parameters (Body)
+
+| Name | Type | Description |
+| --------- | -------- | ---- |
+| `text` | `string` | The text to be split into sentences. |
+ 
+###### Response
+```javascript
+Status: 200 OK
+```
+```javascript
+{
+    "text": "Thi's is a sample. This is another one. Hi",
+    "sentences": [
+        { "sentence": "Thi's is a sample.", "confidence": 1.0 },
+        { "sentence": "This is another one.", "confidence": 0.994 },
+        { "sentence": "Hi", "confidence": 1.0 }
+    ]
+}
+```
+

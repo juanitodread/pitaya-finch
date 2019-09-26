@@ -89,6 +89,8 @@ $ sbt testOnly *<class-spec-name>
       1. [Pipeline: Token processing pipeline](#pipeline-token-processing-pipeline)
   1. [Sentence Detector](#sentence-detector)
       1. [Find sentences](#find-sentences)
+  1. [Entity Recognition](#entity-recognition)
+      1. [Entities](#entities)
   
   
 ## General
@@ -384,7 +386,7 @@ Status: 200 OK
 Returns a list of sentences according to the given text (paragraph).
  
 ```
-POST /nlp/sentence/find
+POST /nlp/sentences/find
 ```
  
 ###### Parameters (Body)
@@ -408,3 +410,7 @@ Status: 200 OK
 }
 ```
 
+
+### Entity Recognition
+#### Entities
+TBD

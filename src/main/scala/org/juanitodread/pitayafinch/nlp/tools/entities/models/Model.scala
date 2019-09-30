@@ -1,4 +1,4 @@
-package org.juanitodread.pitayafinch.nlp.tools.entities.training
+package org.juanitodread.pitayafinch.nlp.tools.entities.models
 
 import java.io.InputStream
 

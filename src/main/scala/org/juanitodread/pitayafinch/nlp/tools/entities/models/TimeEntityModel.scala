@@ -1,4 +1,4 @@
-package org.juanitodread.pitayafinch.nlp.tools.entities.training
+package org.juanitodread.pitayafinch.nlp.tools.entities.models
 
 class TimeEntityModel
   extends AbstractModel("/nlp/models/entities/en-ner-time.bin") {

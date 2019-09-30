@@ -4,6 +4,7 @@ import java.io.InputStream
 
 import opennlp.tools.sentdetect.{ SentenceDetectorME, SentenceModel }
 
+import org.juanitodread.pitayafinch.formatters.NumberFormatter
 import org.juanitodread.pitayafinch.model.nlp.sentences.FinderResult
 
 class Finder(modelPath: String) {
@@ -24,17 +25,11 @@ class Finder(modelPath: String) {
   }
 }
 
-object Finder {
+object Finder extends NumberFormatter {
   val trainingModel: String = "/nlp/models/sentences/en-sent.bin"
   private val finder: Finder = new Finder(trainingModel)
 
   def apply(text: String): List[FinderResult] = {
     finder.find(text)
-  }
-
-  def round(confidence: Double, precision: Int = 3): Double = {
-    require(precision > 0 && precision < 6)
-    val decimals = Math.pow(10, precision)
-    Math.rint(confidence * decimals) / decimals
   }
 }

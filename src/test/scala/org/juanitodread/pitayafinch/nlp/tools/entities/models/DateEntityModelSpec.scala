@@ -1,6 +1,7 @@
-package org.juanitodread.pitayafinch.nlp.tools.entities.training
+package org.juanitodread.pitayafinch.nlp.tools.entities.models
 
 import org.juanitodread.pitayafinch.UnitSpec
+import org.juanitodread.pitayafinch.nlp.tools.entities.models.DateEntityModel
 
 object DateEntityModelFixture {
   val model: DateEntityModel = new DateEntityModel()

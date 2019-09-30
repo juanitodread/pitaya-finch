@@ -1,4 +1,4 @@
-package org.juanitodread.pitayafinch.nlp.tools.entities.training
+package org.juanitodread.pitayafinch.nlp.tools.entities.models
 
 class PercentageEntityModel
   extends AbstractModel("/nlp/models/entities/en-ner-percentage.bin") {

@@ -12,7 +12,7 @@ class EnglishLemmatizerSpec extends UnitSpec {
     }
   }
 
-  "An EnglishLemmatizer" should "get the lemma result of a word" in {
+  it should "get the lemma result of a word" in {
     val lemmatizer: EnglishLemmatizer = new EnglishLemmatizer(dictionary)
     val token: String = "better"
     assert(lemmatizer.lemmatize(token) === LemmaResult(
@@ -41,7 +41,7 @@ class EnglishLemmatizerSpec extends UnitSpec {
       List()))
   }
 
-  "An EnglishLemmatizer" should "get the lemma result of a list of words" in {
+  it should "get the lemma result of a list of words" in {
     val lemmatizer: EnglishLemmatizer = new EnglishLemmatizer(dictionary)
     val tokens: List[String] = List("better", "meeting")
     assert(

@@ -28,7 +28,7 @@ class EnglishStemmerSpec extends UnitSpec {
     assert(stemmer.stem(token) === "")
   }
 
-  "An EnglishStemmer" should "stem a list of words" in {
+  it should "stem a list of words" in {
     val stemmer: EnglishStemmer = new EnglishStemmer()
     val tokens: List[String] = List("banking", "bank", "banked")
     stemmer.stem(tokens) should contain theSameElementsInOrderAs List("bank", "bank", "bank")
@@ -40,7 +40,7 @@ class EnglishStemmerSpec extends UnitSpec {
     assert(stemmer.stem(tokens) === List.empty[String])
   }
 
-  "An EnglishStemmer" should "stem a word and keep original word" in {
+  it should "stem a word and keep original word" in {
     val stemmer: EnglishStemmer = new EnglishStemmer()
     val token: String = "banking"
     assert(stemmer.stemKeepOriginal(token) === StemResult("banking", "bank"))
@@ -58,7 +58,7 @@ class EnglishStemmerSpec extends UnitSpec {
     assert(stemmer.stemKeepOriginal(token) === StemResult("", ""))
   }
 
-  "An EnglishStemmer" should "stem a list of words and keep original words" in {
+  it should "stem a list of words and keep original words" in {
     val stemmer: EnglishStemmer = new EnglishStemmer()
     val tokens: List[String] = List("banking", "bank", "banked")
     stemmer.stemKeepOriginal(tokens) should contain theSameElementsInOrderAs List(

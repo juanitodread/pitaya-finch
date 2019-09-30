@@ -5,7 +5,7 @@ import com.twitter.util.Promise
 
 import org.juanitodread.pitayafinch.UnitSpec
 
-class EndpointsTest extends UnitSpec {
+class EndpointsSpec extends UnitSpec {
   private val baseApi = "/pitaya/api/v1"
   private val endpoints = List(
     s"$baseApi",

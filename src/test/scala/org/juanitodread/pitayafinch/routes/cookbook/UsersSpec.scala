@@ -10,7 +10,7 @@ import io.finch.circe._
 import org.juanitodread.pitayafinch.UnitSpec
 import org.juanitodread.pitayafinch.model.{ User => UserModel }
 
-class UsersTest extends UnitSpec {
+class UsersSpec extends UnitSpec {
   private val baseApi = "/pitaya/api/v1/crud/users"
 
   def prepareUsers(): List[UserModel] = {
@@ -72,5 +72,4 @@ class UsersTest extends UnitSpec {
       case Some(UserModel(juanUser.id, "Juan", 10, None, List())) =>
     }
   }
-
 }

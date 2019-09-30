@@ -23,7 +23,7 @@ class LowerCaseConverterSpec extends UnitSpec {
     assert(converter.toLowerCase("THIS IS A SAMPLE STRING") === "this is a sample string")
   }
 
-  "A LowerCaseConverter" should "convert a given empty list of tokens into lowercase" in {
+  it should "convert a given empty list of tokens into lowercase" in {
     val converter = new LowerCaseConverter()
     assert(converter.toLowerCase(List.empty[String]) === List.empty[String])
   }

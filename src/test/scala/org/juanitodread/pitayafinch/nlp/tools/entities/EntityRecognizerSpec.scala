@@ -9,7 +9,7 @@ class EntityRecognizerSpec extends UnitSpec {
     "that ten-year-long research had failed to fulfill the expectations, " +
     "funding for machine translation was dramatically reduced."
 
-  "An EntityRecognizer of Organization" should "recognize an Organization in a sentence" in {
+  "An EntityRecognizer" should "be of type Organization and recognize an Organization in a sentence" in {
     val recognizer = new EntityRecognizer(OrganizationEntityModel())
     val entities = recognizer.find(sentence)
 
@@ -23,7 +23,7 @@ class EntityRecognizerSpec extends UnitSpec {
     }
   }
 
-  "An EntityRecognizer of Person" should "not recognize a Person in a sentence" in {
+  it should "be of type Person and not recognize a Person in a sentence" in {
     val recognizer = new EntityRecognizer(PersonEntityModel())
     val entities = recognizer.find(sentence)
     assert(entities.isEmpty === true)

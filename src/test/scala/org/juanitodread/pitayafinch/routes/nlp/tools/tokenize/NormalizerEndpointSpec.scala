@@ -20,7 +20,7 @@ class NormalizerEndpointSpec extends UnitSpec {
     }
   }
 
-  "A NormalizerEndpoint route" should "have stopwords endpoint" in {
+  it should "have stopwords endpoint" in {
     val request = StopwordRequest(List("this", "should", "be", "lowercase"))
     NormalizerEndpoint.stopwords().apply(Input.post(s"$baseApi/stopwords").withBody[Json](request)).awaitValueUnsafe() should equal {
       Some(StopwordResponse(
@@ -29,7 +29,7 @@ class NormalizerEndpointSpec extends UnitSpec {
     }
   }
 
-  "A NormalizerEndpoint route" should "have stem endpoint" in {
+  it should "have stem endpoint" in {
     val request = StemRequest(List("bank", "banking", "banked"))
     NormalizerEndpoint.stemmer().apply(Input.post(s"$baseApi/stem").withBody[Json](request)).awaitValueUnsafe() should equal {
       Some(StemResponse(
@@ -38,7 +38,7 @@ class NormalizerEndpointSpec extends UnitSpec {
     }
   }
 
-  "A NormalizerEndpoint route" should "have lemma endpoint" in {
+  it should "have lemma endpoint" in {
     val request = LemmaRequest(List("hello", "bye"))
     NormalizerEndpoint.lemmatizer().apply(Input.post(s"$baseApi/lemma").withBody[Json](request)).awaitValueUnsafe() should equal {
       Some(LemmaResponse(

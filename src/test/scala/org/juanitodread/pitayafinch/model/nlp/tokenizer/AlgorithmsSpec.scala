@@ -3,19 +3,19 @@ package org.juanitodread.pitayafinch.model.nlp.tokenizer
 import org.juanitodread.pitayafinch.UnitSpec
 
 class AlgorithmsSpec extends UnitSpec {
-  "A Tokenizers algorithm" should "return a list of available algorithms" in {
+  "An Algorithms" should "have a Tokenizers algorithm which returns a list of available algorithms" in {
     assert(Tokenizers.getAlgorithms() === List("SIMPLE", "WHITESPACE", "MAX_ENTROPY"))
   }
 
-  "An Initializers algorithm" should "return a list of available algorithms" in {
+  it should "have an Initializers algorithm which returns a list of available algorithms" in {
     assert(Initializers.getAlgorithms() === List("TOKENIZER"))
   }
 
-  "A Stagers algorithm" should "return a list of available algorithms" in {
+  it should "have a Stagers algorithm which returns a list of available algorithms" in {
     assert(Stagers.getAlgorithms() === List("LOWERCASE", "STOPWORDS"))
   }
 
-  "A Finalizers algorithm" should "return a list of available algorithms" in {
+  it should "have a Finalizers algorithm which returns a list of available algorithms" in {
     assert(Finalizers.getAlgorithms() === List("STEMMER", "LEMMATIZER"))
   }
 }

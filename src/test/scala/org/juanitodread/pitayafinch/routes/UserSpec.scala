@@ -5,7 +5,7 @@ import io.finch._
 import org.juanitodread.pitayafinch.UnitSpec
 import org.juanitodread.pitayafinch.model.CommonMessage
 
-class UserTest extends UnitSpec {
+class UserSpec extends UnitSpec {
   private val baseApi = "/pitaya/api/v1/users"
 
   "A User route" should "have an index endpoint" in {

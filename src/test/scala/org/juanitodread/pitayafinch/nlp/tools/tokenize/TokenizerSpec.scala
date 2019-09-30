@@ -59,7 +59,7 @@ class TokenizerSpec extends UnitSpec {
 }
 
 class MaxEntropyModelSpec extends UnitSpec {
-  "A MaxEntropyModelSpec" should "point to an existent binary model" in {
+  "A MaxEntropyModel" should "point to an existent binary model" in {
     val modelFilePath = getClass.getResource(MaxEntropyModel.MODEL_PATH)
     assert(modelFilePath !== null)
 

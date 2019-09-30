@@ -30,7 +30,7 @@ class PipelineEndpointSpec extends UnitSpec {
     }
   }
 
-  "A PipelineEndpoint route with finalizer Stemmer algorithm" should "should return a PipelineResponse with LemmaResult as None" in {
+  it should "have a finalizer Stemmer algorithm which returns a PipelineResponse with LemmaResult as None" in {
     val request = PipelineRequest(
       "This's a sample text",
       Pipeline(
@@ -49,7 +49,7 @@ class PipelineEndpointSpec extends UnitSpec {
     }
   }
 
-  "A PipelineEndpoint route with finalizer Lemmatizer algorithm" should "should return a PipelineResponse with StemResult as None" in {
+  it should "have a finalizer Lemmatizer algorithm which returns a PipelineResponse with StemResult as None" in {
     val request = PipelineRequest(
       "hello",
       Pipeline(

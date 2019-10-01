@@ -28,4 +28,35 @@ class EntityRecognizerSpec extends UnitSpec {
     val entities = recognizer.find(sentence)
     assert(entities.isEmpty === true)
   }
+
+  "An EntityRecognizer object" should "be able to evaluate DateEntityModel" in {
+    val entity = EntityRecognizer("This is a date: Nov 12 1993").head
+    assert(entity.name === "Nov 12 1993")
+    assert(entity.model === "Date")
+  }
+
+  it should "be able to evaluate LocationEntityModel" in {
+    val entity = EntityRecognizer("This is a location: California").head
+    assert(entity.name === "California")
+    assert(entity.model === "Location")
+  }
+
+  it should "be able to evaluate MoneyEntityModel" in {
+    // In Money 2 entities are returned always. (First one with '$' only)
+    val entity = EntityRecognizer("This is currency money: $45.50").tail.head
+    assert(entity.name === "45.50")
+    assert(entity.model === "Money")
+  }
+
+  it should "be able to evaluate OrganizationEntityModel" in {
+    val entity = EntityRecognizer("This is an organization: IBM").head
+    assert(entity.name === "IBM")
+    assert(entity.model === "Organization")
+  }
+
+  it should "be able to evaluate PersonEntityModel" in {
+    val entity = EntityRecognizer("This is a person: Julian Casablancas").head
+    assert(entity.name === "Julian Casablancas")
+    assert(entity.model === "Person")
+  }
 }

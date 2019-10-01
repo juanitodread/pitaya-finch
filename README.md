@@ -413,4 +413,38 @@ Status: 200 OK
 
 ### Entity Recognition
 #### Entities
-TBD
+Returns a list of entities found in the given text (sentence). The algorithm supports the following entity types:
+
+* Dates
+* Times
+* Locations
+* Persons
+* Organizations
+* Money
+* Percentages
+
+all of them are used in the process.
+
+```
+POST /nlp/entities
+```
+ 
+###### Parameters (Body)
+
+| Name | Type | Description |
+| --------- | -------- | ---- |
+| `text` | `string` | The text to analyzed in order to detect entities. |
+ 
+###### Response
+```javascript
+Status: 200 OK
+```
+```javascript
+{
+    "text": "He appointed Julian Casablancas or John Doe",
+    "entities": [
+        { "entity": "Julian Casablancas", "model": "Person", "confidence": 0.949 },
+        { "entity": "John Doe", "model": "Person", "confidence": 0.913 }
+    ]
+}
+```

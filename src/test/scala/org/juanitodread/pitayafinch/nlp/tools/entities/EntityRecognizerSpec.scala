@@ -15,8 +15,8 @@ class EntityRecognizerSpec extends UnitSpec {
 
     assert(entities.length === 1)
     inside(entities.head) {
-      case Entity(name, model, confidence) =>
-        name shouldEqual "ALPAC"
+      case Entity(entity, model, confidence) =>
+        entity shouldEqual "ALPAC"
         model shouldEqual "Organization"
         confidence should be >= 0.0
         confidence should be <= 1.0
@@ -31,32 +31,32 @@ class EntityRecognizerSpec extends UnitSpec {
 
   "An EntityRecognizer object" should "be able to evaluate DateEntityModel" in {
     val entity = EntityRecognizer("This is a date: Nov 12 1993").head
-    assert(entity.name === "Nov 12 1993")
+    assert(entity.entity === "Nov 12 1993")
     assert(entity.model === "Date")
   }
 
   it should "be able to evaluate LocationEntityModel" in {
     val entity = EntityRecognizer("This is a location: California").head
-    assert(entity.name === "California")
+    assert(entity.entity === "California")
     assert(entity.model === "Location")
   }
 
   it should "be able to evaluate MoneyEntityModel" in {
     // In Money 2 entities are returned always. (First one with '$' only)
     val entity = EntityRecognizer("This is currency money: $45.50").tail.head
-    assert(entity.name === "45.50")
+    assert(entity.entity === "45.50")
     assert(entity.model === "Money")
   }
 
   it should "be able to evaluate OrganizationEntityModel" in {
     val entity = EntityRecognizer("This is an organization: IBM").head
-    assert(entity.name === "IBM")
+    assert(entity.entity === "IBM")
     assert(entity.model === "Organization")
   }
 
   it should "be able to evaluate PersonEntityModel" in {
     val entity = EntityRecognizer("This is a person: Julian Casablancas").head
-    assert(entity.name === "Julian Casablancas")
+    assert(entity.entity === "Julian Casablancas")
     assert(entity.model === "Person")
   }
 }

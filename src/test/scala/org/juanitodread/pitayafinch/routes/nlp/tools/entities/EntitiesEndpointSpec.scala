@@ -6,7 +6,7 @@ import io.finch.Input
 import io.finch.circe._
 
 import org.juanitodread.pitayafinch.UnitSpec
-import org.juanitodread.pitayafinch.model.nlp.entities.{ EntitiesRequest, EntitiesResponse, Entity }
+import org.juanitodread.pitayafinch.model.nlp.entities._
 
 class EntitiesEndpointSpec extends UnitSpec {
   private val baseApi: String = "/pitaya/api/v1/nlp/entities"

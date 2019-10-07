@@ -2,7 +2,8 @@ package org.juanitodread.pitayafinch.nlp.tools.entities
 
 import org.juanitodread.pitayafinch.UnitSpec
 import org.juanitodread.pitayafinch.model.nlp.entities.Entity
-import org.juanitodread.pitayafinch.nlp.tools.entities.models.{ OrganizationEntityModel, PersonEntityModel }
+import org.juanitodread.pitayafinch.nlp.tools.entities.fixtures.EntityRecognizerFixture
+import org.juanitodread.pitayafinch.nlp.tools.entities.models._
 
 class EntityRecognizerSpec extends UnitSpec {
   val sentence = "However, real progress was much slower, and after the ALPAC report in 1966, which found " +
@@ -30,32 +31,32 @@ class EntityRecognizerSpec extends UnitSpec {
   }
 
   "An EntityRecognizer object" should "be able to evaluate DateEntityModel" in {
-    val entity = EntityRecognizer("This is a date: Nov 12 1993").head
+    val entity = EntityRecognizerFixture("This is a date: Nov 12 1993").head
     assert(entity.entity === "Nov 12 1993")
     assert(entity.model === "Date")
   }
 
   it should "be able to evaluate LocationEntityModel" in {
-    val entity = EntityRecognizer("This is a location: California").head
+    val entity = EntityRecognizerFixture("This is a location: California").head
     assert(entity.entity === "California")
     assert(entity.model === "Location")
   }
 
   it should "be able to evaluate MoneyEntityModel" in {
     // In Money 2 entities are returned always. (First one with '$' only)
-    val entity = EntityRecognizer("This is currency money: $45.50").tail.head
+    val entity = EntityRecognizerFixture("This is currency money: $45.50").tail.head
     assert(entity.entity === "45.50")
     assert(entity.model === "Money")
   }
 
   it should "be able to evaluate OrganizationEntityModel" in {
-    val entity = EntityRecognizer("This is an organization: IBM").head
+    val entity = EntityRecognizerFixture("This is an organization: IBM").head
     assert(entity.entity === "IBM")
     assert(entity.model === "Organization")
   }
 
   it should "be able to evaluate PersonEntityModel" in {
-    val entity = EntityRecognizer("This is a person: Julian Casablancas").head
+    val entity = EntityRecognizerFixture("This is a person: Julian Casablancas").head
     assert(entity.entity === "Julian Casablancas")
     assert(entity.model === "Person")
   }

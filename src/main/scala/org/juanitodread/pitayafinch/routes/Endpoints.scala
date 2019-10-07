@@ -40,7 +40,7 @@ object HandleErrorsAsJson extends Logging {
   def pitayaErrorToJson(ex: PitayaError): Json = ex match {
     case _ =>
       info(ex)
-      toJson(ex.title, ex.message)
+      toJson(ex.getTitle, ex.message)
   }
 
   private def toJson(error: String, message: String) = {

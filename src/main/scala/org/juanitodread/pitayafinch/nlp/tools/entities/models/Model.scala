@@ -11,7 +11,7 @@ trait Model {
 }
 
 abstract class AbstractModel(modelPath: String) extends Model {
-  private val logger: Logger = LoggerFactory.getLogger(getClass)
+  private final val logger: Logger = LoggerFactory.getLogger(getClass)
 
   logger.info(s"Reading Entity Recognizer model from: ${modelPath}")
   protected val modelFile: InputStream = getClass.getResourceAsStream(modelPath)

@@ -6,7 +6,6 @@ import org.juanitodread.pitayafinch.nlp.tools.entities.EntityRecognizer
 import org.juanitodread.pitayafinch.nlp.tools.entities.models._
 
 object EntityRecognizerFixture extends NumberFormatter {
-  println("ENTRE AL FIXTURE: EntityRecognizerFixture")
   private final val recognizers = List(
     DateEntityModel(),
     LocationEntityModel(),

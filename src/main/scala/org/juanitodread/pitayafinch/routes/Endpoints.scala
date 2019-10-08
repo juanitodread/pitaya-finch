@@ -8,6 +8,7 @@ import io.circe.{ Encoder, Json }
 import io.finch._
 import io.finch.circe.dropNullValues._
 
+import org.juanitodread.pitayafinch.model.PitayaError
 import org.juanitodread.pitayafinch.routes.cookbook.CookbookEndpoints
 import org.juanitodread.pitayafinch.routes.nlp.NlpEndpoints
 
@@ -36,6 +37,12 @@ object HandleErrorsAsJson extends Logging {
       toJson("InvalidJSONProperty", error.getMessage)
   }
 
+  def pitayaErrorToJson(ex: PitayaError): Json = ex match {
+    case _ =>
+      info(ex)
+      toJson(ex.getTitle, ex.message)
+  }
+
   private def toJson(error: String, message: String) = {
     Json.obj(
       "error" -> Json.fromString(error),
@@ -45,5 +52,6 @@ object HandleErrorsAsJson extends Logging {
   implicit val errorEncoder: Encoder[Exception] = Encoder.instance {
     case error: Error => errorToJson(error)
     case Errors(errors) => Json.arr(errors.toList.map(errorToJson): _*)
+    case ex: PitayaError => pitayaErrorToJson(ex)
   }
 }

@@ -91,6 +91,8 @@ $ sbt testOnly *<class-spec-name>
       1. [Find sentences](#find-sentences)
   1. [Entity Recognition](#entity-recognition)
       1. [Entities](#entities)
+  1. [POS Tagger](#pos-tagger)
+      1. [Tags](#tags)
   
   
 ## General
@@ -433,7 +435,7 @@ POST /nlp/entities
 
 | Name | Type | Description |
 | --------- | -------- | ---- |
-| `text` | `string` | The text to analyzed in order to detect entities. |
+| `text` | `string` | The text to be analyzed in order to detect entities. |
  
 ###### Response
 ```javascript
@@ -445,6 +447,42 @@ Status: 200 OK
     "entities": [
         { "entity": "Julian Casablancas", "model": "Person", "confidence": 0.949 },
         { "entity": "John Doe", "model": "Person", "confidence": 0.913 }
+    ]
+}
+```
+
+
+### POS Tagger
+#### tags
+Returns a list of Tag objects with the tag information of the given sentence.
+A Tag object contains the token (word), the tag and the description of the tag.
+
+```
+POST /nlp/pos/tags
+```
+ 
+###### Parameters (Body)
+
+| Name | Type | Description |
+| --------- | -------- | ---- |
+| `text` | `string` | The text to be analyzed in order to tag words. |
+ 
+###### Response
+```javascript
+Status: 200 OK
+```
+```javascript
+{
+    "text": "His election and policies have sparked numerous protests",
+    "tags": [
+        { "token": "His", "tag": "PRP$", "description": "Possessive pronoun" },
+        { "token": "election", "tag": "NN", "description": "Noun, singular or mass" },
+        { "token": "and", "tag": "CC", "description": "Coordinating conjunction" },
+        { "token": "policies", "tag": "NNS", "description": "Noun, plural" },
+        { "token": "have", "tag": "VBP", "description": "Verb, non-3rd person singular present" },
+        { "token": "sparked", "tag": "VBN", "description": "Verb, past participle" },
+        { "token": "numerous", "tag": "JJ", "description": "Adjective" },
+        { "token": "protests", "tag": "NNS", "description": "Noun, plural" }
     ]
 }
 ```

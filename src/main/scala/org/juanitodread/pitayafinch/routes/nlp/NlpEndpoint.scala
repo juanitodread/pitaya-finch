@@ -6,6 +6,7 @@ import org.juanitodread.pitayafinch.routes.BaseEndpoint
 import org.juanitodread.pitayafinch.routes.nlp.tools.entities.EntitiesEndpoint
 import org.juanitodread.pitayafinch.routes.nlp.tools.tokenize._
 import org.juanitodread.pitayafinch.routes.nlp.tools.sentences._
+import org.juanitodread.pitayafinch.routes.nlp.tools.pos._
 
 trait NlpEndpoint extends BaseEndpoint {
   override protected def basePath = super.basePath :: "nlp"
@@ -21,6 +22,7 @@ object NlpEndpoints {
       NormalizerEndpoint.lemmatizer() :+:
       PipelineEndpoint.pipeline() :+:
       FinderEndpoint.find() :+:
-      EntitiesEndpoint.getEntities()
+      EntitiesEndpoint.getEntities() :+:
+      TagsEndpoint.tags()
   }
 }

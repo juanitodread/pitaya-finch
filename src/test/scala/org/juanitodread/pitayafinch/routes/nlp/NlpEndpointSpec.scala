@@ -2,6 +2,7 @@ package org.juanitodread.pitayafinch.routes.nlp
 
 import org.juanitodread.pitayafinch.UnitSpec
 import org.juanitodread.pitayafinch.routes.nlp.tools.entities._
+import org.juanitodread.pitayafinch.routes.nlp.tools.pos._
 import org.juanitodread.pitayafinch.routes.nlp.tools.tokenize._
 import org.juanitodread.pitayafinch.routes.nlp.tools.sentences._
 
@@ -16,6 +17,7 @@ class NlpEndpointsSpec extends UnitSpec {
       NormalizerEndpoint.lemmatizer() :+:
       PipelineEndpoint.pipeline() :+:
       FinderEndpoint.find() :+:
-      EntitiesEndpoint.getEntities()).toString)
+      EntitiesEndpoint.getEntities() :+:
+      TagsEndpoint.tags()).toString)
   }
 }

@@ -3,7 +3,7 @@ package org.juanitodread.pitayafinch.nlp.tools.entities
 import org.juanitodread.pitayafinch.UnitSpec
 import org.juanitodread.pitayafinch.model.nlp.entities.Entity
 import org.juanitodread.pitayafinch.nlp.tools.entities.fixtures.EntityRecognizerFixture
-import org.juanitodread.pitayafinch.nlp.tools.entities.models._
+import org.juanitodread.pitayafinch.nlp.tools.models.entities._
 
 class EntityRecognizerSpec extends UnitSpec {
   val sentence = "However, real progress was much slower, and after the ALPAC report in 1966, which found " +

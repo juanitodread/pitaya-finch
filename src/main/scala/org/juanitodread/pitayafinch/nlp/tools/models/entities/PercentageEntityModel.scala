@@ -1,11 +1,11 @@
-package org.juanitodread.pitayafinch.nlp.tools.entities.models
+package org.juanitodread.pitayafinch.nlp.tools.models.entities
 
-import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 class PercentageEntityModel
-  extends AbstractModel("/nlp/models/entities/en-ner-percentage.bin") {
-  override def getName(): String = "Percentage"
+  extends FinderModel("/nlp/models/entities/en-ner-percentage.bin") {
+  override def getName: String = "Percentage"
 }
 
 object PercentageEntityModel {

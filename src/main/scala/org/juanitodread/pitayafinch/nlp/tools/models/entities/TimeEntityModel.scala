@@ -1,11 +1,11 @@
-package org.juanitodread.pitayafinch.nlp.tools.entities.models
+package org.juanitodread.pitayafinch.nlp.tools.models.entities
 
-import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 class TimeEntityModel
-  extends AbstractModel("/nlp/models/entities/en-ner-time.bin") {
-  override def getName(): String = "Time"
+  extends FinderModel("/nlp/models/entities/en-ner-time.bin") {
+  override def getName: String = "Time"
 }
 
 object TimeEntityModel {

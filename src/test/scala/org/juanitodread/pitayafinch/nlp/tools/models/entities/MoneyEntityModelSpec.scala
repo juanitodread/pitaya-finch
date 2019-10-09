@@ -1,4 +1,4 @@
-package org.juanitodread.pitayafinch.nlp.tools.entities.models
+package org.juanitodread.pitayafinch.nlp.tools.models.entities
 
 import org.juanitodread.pitayafinch.UnitSpec
 
@@ -9,16 +9,16 @@ object MoneyEntityModelFixture {
 class MoneyEntityModelSpec extends UnitSpec {
   "A MoneyEntityModel" should "have a defined name" in {
     val model = MoneyEntityModelFixture.model
-    assert(model.getName() === "Money")
+    assert(model.getName === "Money")
   }
 
   it should "have a valid OpenNLP Entity Model in English" in {
     val model = MoneyEntityModelFixture.model
-    assert(model.getModel().getLanguage === "en")
+    assert(model.getNlpModel.getLanguage === "en")
   }
 
   it should "have a valid OpenNLP Entity Model version" in {
     val model = MoneyEntityModelFixture.model
-    assert(model.getModel().getVersion.toString === "1.5.0")
+    assert(model.getNlpModel.getVersion.toString === "1.5.0")
   }
 }

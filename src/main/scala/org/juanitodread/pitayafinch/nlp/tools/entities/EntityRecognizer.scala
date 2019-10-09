@@ -7,19 +7,19 @@ import opennlp.tools.util.Span
 
 import org.juanitodread.pitayafinch.formatters.NumberFormatter
 import org.juanitodread.pitayafinch.model.nlp.entities.Entity
-import org.juanitodread.pitayafinch.nlp.tools.entities.models._
+import org.juanitodread.pitayafinch.nlp.tools.models.entities._
 import org.juanitodread.pitayafinch.nlp.tools.tokenize.Tokenizer
 
-class EntityRecognizer[T <: Model](model: T) extends NumberFormatter {
+class EntityRecognizer[T <: FinderModel](model: T) extends NumberFormatter {
   def find(sentence: String): List[Entity] = {
-    val nameFinder: NameFinderME = new NameFinderME(model.getModel())
+    val nameFinder: NameFinderME = new NameFinderME(model.getNlpModel)
     val tokens: Array[String] = Tokenizer.maxEntropy(sentence).toArray[String]
     val spans: Array[Span] = nameFinder.find(tokens)
     nameFinder.clearAdaptiveData()
 
     spans.map { span =>
       val entityName = tokens.slice(span.getStart, span.getEnd).mkString(" ")
-      Entity(entityName, model.getName(), round(span.getProb))
+      Entity(entityName, model.getName, round(span.getProb))
     }.toList
   }
 }

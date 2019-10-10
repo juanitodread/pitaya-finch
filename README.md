@@ -466,6 +466,7 @@ POST /nlp/pos/tags
 | Name | Type | Description |
 | --------- | -------- | ---- |
 | `text` | `string` | The text to be analyzed in order to tag words. |
+| `chunk` | `boolean` | `true` if you want to get the chunks of the sentence, `false` otherwise. |
  
 ###### Response
 ```javascript
@@ -474,15 +475,22 @@ Status: 200 OK
 ```javascript
 {
     "text": "His election and policies have sparked numerous protests",
-    "tags": [
-        { "token": "His", "tag": "PRP$", "description": "Possessive pronoun" },
-        { "token": "election", "tag": "NN", "description": "Noun, singular or mass" },
-        { "token": "and", "tag": "CC", "description": "Coordinating conjunction" },
-        { "token": "policies", "tag": "NNS", "description": "Noun, plural" },
-        { "token": "have", "tag": "VBP", "description": "Verb, non-3rd person singular present" },
-        { "token": "sparked", "tag": "VBN", "description": "Verb, past participle" },
-        { "token": "numerous", "tag": "JJ", "description": "Adjective" },
-        { "token": "protests", "tag": "NNS", "description": "Noun, plural" }
-    ]
+    "result": {
+        "tags": [
+            { "token": "His", "tag": "PRP$", "description": "Possessive pronoun" },
+            { "token": "election", "tag": "NN", "description": "Noun, singular or mass" },
+            { "token": "and", "tag": "CC", "description": "Coordinating conjunction" },
+            { "token": "policies", "tag": "NNS", "description": "Noun, plural" },
+            { "token": "have", "tag": "VBP", "description": "Verb, non-3rd person singular present" },
+            { "token": "sparked", "tag": "VBN", "description": "Verb, past participle" },
+            { "token": "numerous", "tag": "JJ", "description": "Adjective" },
+            { "token": "protests", "tag": "NNS", "description": "Noun, plural" }
+        ],
+        "chunks": [
+            { "chunk": "His election and policies", "group": "NP" },
+            { "chunk": "have sparked", "group": "VP" },
+            { "chunk": "numerous protests", "group": "NP" }
+        ]
+    }
 }
 ```

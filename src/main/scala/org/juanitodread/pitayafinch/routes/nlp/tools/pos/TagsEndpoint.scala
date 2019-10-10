@@ -17,6 +17,6 @@ object TagsEndpoint extends NlpEndpoint {
   def tags(): Endpoint[IO, TagsResponse] = post(tagsPath :: postedTags) { request: TagsRequest =>
     Ok(TagsResponse(
       request.text,
-      Tagger(request.text)))
+      Tagger(request.text, request.chunk)))
   }
 }

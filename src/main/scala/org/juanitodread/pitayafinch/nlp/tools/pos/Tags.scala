@@ -1,7 +1,7 @@
 package org.juanitodread.pitayafinch.nlp.tools.pos
 
 trait Tags {
-  protected final val tags: Map[String, String] = Map(
+  protected final val tagsMap: Map[String, String] = Map(
     "CC" -> "Coordinating conjunction",
     "CD" -> "Cardinal number",
     "DT" -> "Determiner",

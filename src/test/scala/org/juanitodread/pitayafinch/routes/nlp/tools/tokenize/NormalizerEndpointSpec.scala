@@ -45,7 +45,7 @@ class NormalizerEndpointSpec extends UnitSpec {
         List("hello", "bye"),
         List(
           LemmaResult("hello", List(Lemma("NN", "Noun, singular or mass"))),
-          LemmaResult("bye", List(Lemma("JJ", "Adjective"), Lemma("NN", "Noun, singular or mass"))))))
+          LemmaResult("bye", List(Lemma("NN", "Noun, singular or mass"), Lemma("JJ", "Adjective"))))))
     }
   }
 }

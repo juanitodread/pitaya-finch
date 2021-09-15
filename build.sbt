@@ -1,18 +1,18 @@
 name := "pitaya-finch"
-version := "0.1.0"
+version := "1.2.1"
 
 lazy val root = (project in file("."))
 
-scalaVersion := "2.12.8"
+scalaVersion := "2.13.6"
 
-val finchVersion = "0.26.0"
-val circeVersion = "0.11.0"
-val configVersion = "1.3.3"
-val scalatestVersion = "3.0.5"
-val twitterServerVersion = "19.2.0"
-val logbackVersion = "1.2.3"
+val finchVersion = "0.32.1"
+val circeVersion = "0.13.0"
+val configVersion = "1.4.1"
+val scalatestVersion = "3.2.9"
+val twitterServerVersion = "20.9.0"
+val logbackVersion = "1.2.6"
 
-val openNlpVersion = "1.9.1"
+val openNlpVersion = "1.9.3"
 
 libraryDependencies ++= Seq(
   "com.github.finagle" %% "finchx-core" % finchVersion,
@@ -24,6 +24,7 @@ libraryDependencies ++= Seq(
   "com.twitter" %% "finagle-stats" % twitterServerVersion,
   "com.twitter" %% "twitter-server-logback-classic" % twitterServerVersion,
   "ch.qos.logback" % "logback-classic" % logbackVersion,
+  "org.scalactic" %% "scalactic" % scalatestVersion,
   "org.scalatest" %% "scalatest" % scalatestVersion % "test",
 
   "org.apache.opennlp" % "opennlp-tools" % openNlpVersion

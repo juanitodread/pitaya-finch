@@ -17,7 +17,7 @@ class Chunker(model: ChunkerModel) {
 }
 
 object Chunker {
-  private final val chunker = new Chunker(Await.result(ChunkerModelAsync(), 5 seconds))
+  private final val chunker = new Chunker(Await.result(ChunkerModelAsync(), 5.seconds))
 
   def apply(tokens: List[String], tags: List[String]): List[Chunk] = {
     chunker.chunk(tokens, tags)

@@ -30,7 +30,7 @@ class Tagger[T <: PosModel](model: T) extends Tags {
 }
 
 object Tagger {
-  private final val tagger = new Tagger(Await.result(PerceptronModelAsync(), 5 seconds))
+  private final val tagger = new Tagger(Await.result(PerceptronModelAsync(), 5.seconds))
 
   def apply(sentence: String, withChunk: Boolean = false): TagsResult = {
     tagger.tag(sentence, withChunk)

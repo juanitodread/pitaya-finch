@@ -32,7 +32,7 @@ object EntityRecognizer extends NumberFormatter {
     OrganizationEntityModelAsync(),
     PercentageEntityModelAsync(),
     PersonEntityModelAsync(),
-    TimeEntityModelAsync()).map(futureModel => Await.result(futureModel, 5 seconds))
+    TimeEntityModelAsync()).map(futureModel => Await.result(futureModel, 5.seconds))
     .map(model => new EntityRecognizer(model))
 
   def apply(sentence: String): List[Entity] = {

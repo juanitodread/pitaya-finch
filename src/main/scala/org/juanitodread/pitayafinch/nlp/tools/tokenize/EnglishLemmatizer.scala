@@ -17,9 +17,9 @@ class EnglishLemmatizer(dictionaryPath: String) extends Tags {
     val lemmas: List[Lemma] = tagsMap.keys.map { tag =>
       (
         englishLemmas.lemmatize(
-        List(token).toArray,
-        List(tag).toArray).mkString(""),
-        Lemma(tag, tagsMap(tag)))
+          List(token).toArray,
+          List(tag).toArray).mkString(""),
+          Lemma(tag, tagsMap(tag)))
     }.filter(result => result._1 != "O")
       .map(_._2).toList
     LemmaResult(token, lemmas)
